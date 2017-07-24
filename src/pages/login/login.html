@@ -1,5 +1,5 @@
 <ion-content padding>
-  <form (submit)="login()">
+  <form (submit)="login()" #loginForm="ngForm">
     <ion-grid>
 
       <ion-row>
@@ -15,14 +15,20 @@
               <ion-input
                 type="text"
                 autocorrect="false"
-                required>
+                required
+                name="usrName"
+                [(ngModel)]="usrName">
               </ion-input>
             </ion-item>
             <ion-item>
               <ion-label floating>
                 Password
               </ion-label>
-              <ion-input type="password" required></ion-input>
+              <ion-input name='usrPsw'
+                         type="password"
+                         required
+                         minlength="8"
+                         [(ngModel)]="usrPsw"></ion-input>
             </ion-item>
 
           </ion-list>
@@ -33,7 +39,8 @@
 
       <ion-row>
         <ion-col>
-          <button ion-button block class="login-button" type="submit">Login</button>
+          <button ion-button block class="login-button" type="submit"
+                  [disabled]="!loginForm.form.valid">Login</button>
         </ion-col>
       </ion-row>
 
