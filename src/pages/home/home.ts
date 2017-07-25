@@ -19,7 +19,7 @@ export class HomePage {
     let userTasks = this.usrTasks.getTasks(0);
 
     for(let task of userTasks){
-      console.log(task.toString());
+      console.log(task.toString(),' ', task.unixEpoch);
     }
   }
 

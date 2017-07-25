@@ -1,6 +1,6 @@
 //@Utils
 import * as moment from 'moment';
-import { Moment } from "moment";
+import {Moment, unix} from "moment";
 //@Models
 import { User } from "./user";
 
@@ -10,7 +10,7 @@ export class Task{
   _id          : number;
   _name        : string;
   _description : string;
-  _createdAt    : Moment;
+  _createdAt   : Moment;
   _stateStr    : string;
 
   _users       : Array<User>;
@@ -22,14 +22,18 @@ export class Task{
     this._id = id;
     this._name = name;
     this._description = description;
-    this._createdAt = moment(createdAt); //TODO formato
+    this._createdAt = moment(createdAt);
     this._stateStr = stateStr;
     this._users = users;
     this._ownerId = ownerId;
   }
 
  get date(): string{
-    return this._createdAt.toISOString();
+    return this._createdAt.format('ddd DD MMM YYYY @ HH:mm');
+  }
+
+  get unixEpoch(): string{
+    return moment(this._createdAt).unix().toString();
   }
 
 
