@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider
+    AuthServiceProvider,
+    UserTasksProvider
   ]
 })
 export class AppModule {}
