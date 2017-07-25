@@ -1,14 +1,13 @@
+//@Framework
 import { Component } from '@angular/core';
-import {AlertController, LoadingController, NavController, NavParams} from 'ionic-angular';
-
+import { AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
 //@Pages
-import {HomePage} from "../home/home";
-
+import { HomePage } from "../home/home";
 //@Models
 import {Credentials} from "../../models/credentials";
-import {AuthServiceProvider} from "../../providers/auth-service/auth-service";
-import {User} from "../../models/user";
-
+import { User } from "../../models/user";
+//@Providers
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 
 @Component({
   selector: 'page-login',
@@ -21,14 +20,11 @@ export class LoginPage {
   usrPsw    : string;
   user      : User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
               public authService : AuthServiceProvider,
               public loadingCtrl : LoadingController,
               public alertCtrl   : AlertController) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   login() {
@@ -37,7 +33,7 @@ export class LoginPage {
     this.waitForResponse().then(() => {
       setTimeout(() => {
 
-        if(this.user != null){
+        if(this.user){
           this.navCtrl.setRoot(HomePage, this.user);
         }
         else{

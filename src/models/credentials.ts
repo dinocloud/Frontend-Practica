@@ -7,7 +7,6 @@ export class Credentials {
   constructor(userName : string, password : string) {
     this.userName = userName;
     this.password = Md5.hashStr(password).toString();
-    console.log(this.userName, ' ', this.password);
   }
 
 
