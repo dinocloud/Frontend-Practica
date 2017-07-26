@@ -12,12 +12,14 @@ import { LoginPage } from "../pages/login/login";
 //@Providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
+import { TaskItemComponent } from '../components/task-item/task-item';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,
