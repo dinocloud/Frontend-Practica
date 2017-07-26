@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
+//@Models
+import {Task} from "../../models/task";
 
 @Component({
   selector: 'page-home',
@@ -11,16 +13,17 @@ import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 })
 export class HomePage {
 
+  userTasks: Array<Task>;
+
   constructor(public navCtrl: NavController, public usrTasks : UserTasksProvider) {
 
   }
 
   ngOnInit(){
-    let userTasks = this.usrTasks.getTasks(0);
-
-    for(let task of userTasks){
-      console.log(task.toString(),' ', task.unixEpoch);
-    }
+    this.userTasks = this.usrTasks.getTasks(0);
   }
 
+  openTask(task: Task) {
+    console.log(task.toString(),' ', task.unixEpoch);
+  }
 }

@@ -1,4 +1,21 @@
 <ion-content padding>
-  Hola
+  <ion-list>
+    <ion-list-header>
+      Pending tasks
+    </ion-list-header>
+    <button ion-item *ngFor="let task of userTasks" (click)="openTask(task)">
+      <p class="task-name">
+        {{task.name}}
+      </p>
+      <p class="task-date">
+        {{task.date}}
+      </p>
+      <br/>
+      <p class="task-description">
+        {{task.description}}
+      </p>
+
+    </button>
+  </ion-list>
 </ion-content>
 
