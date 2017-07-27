@@ -13,18 +13,20 @@ page-login {
 
     .login-input-box {
       background-color: rgba(253,252,229, 0.75);
-      display: -webkit-flex; /* Safari */
-      -webkit-align-items: center; /* Safari 7.0+ */
-      display: flex;
-      vertical-align: middle;
 
       .item.item-input {
         background-color: transparent;
       }
 
       position: absolute;
-      margin-top: 40%;
       height: 30%;
+      width: 80%;
+      top: 50%;
+      margin-top: -30%;
+      left: 50%;
+      margin-left: -40%;
+
+      padding: 5%;
 
     }
 
