@@ -21,6 +21,18 @@ page-login {
       .item.item-input {
         background-color: transparent;
       }
+
+      position: absolute;
+      margin-top: 40%;
+      height: 30%;
+
+    }
+
+    .login-button {
+      position: fixed;
+      bottom: 2.5%;
+      left: 0;
+      width: 100%;
     }
   }
 }
