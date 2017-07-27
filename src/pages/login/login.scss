@@ -1,4 +1,39 @@
-.login-form {
+page-login {
 
+  .login-form {
+    background-image: url('../assets/img/bg.jpg');
+    -webkit-background-image: url('../assets/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
+    .login-input-box {
+      background-color: rgba(253,252,229, 0.75);
+
+      .item.item-input {
+        background-color: transparent;
+      }
+
+      position: fixed;
+      height: 30%;
+      width: 80%;
+      top: 35%;
+      left: 10%;
+
+      padding: 5%;
+
+    }
+
+    .login-button {
+      position: fixed;
+      bottom: 2.5%;
+      left: 0;
+      width: 100%;
+    }
+  }
 }
 
