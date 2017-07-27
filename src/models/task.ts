@@ -49,7 +49,7 @@ export class Task{
     return this._description;
   }
 
-  get stateStr(): string {
+  get state(): string {
     return this._stateStr;
   }
 
@@ -59,6 +59,10 @@ export class Task{
 
   get ownerId(): number {
     return this._ownerId;
+  }
+
+  userOwnsIt(user: User): boolean {
+    return this._ownerId == user.getId();
   }
 
   public toString() : string{

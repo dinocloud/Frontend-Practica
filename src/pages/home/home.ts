@@ -6,6 +6,7 @@ import { NavController } from 'ionic-angular';
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 //@Models
 import {Task} from "../../models/task";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'page-home',
@@ -15,12 +16,14 @@ export class HomePage {
 
   userTasks: Array<Task>;
 
+  owner = new User(1, 'rodrigo94');
+
   constructor(public navCtrl: NavController, public usrTasks : UserTasksProvider) {
 
   }
 
   ngOnInit(){
-    this.userTasks = this.usrTasks.getTasks(0);
+    this.userTasks = this.usrTasks.getTasks(this.owner.getId());
   }
 
   openTask(task: Task) {

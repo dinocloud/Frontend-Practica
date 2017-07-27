@@ -1,19 +1,25 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      Pending tasks
+      <h1>Pending tasks</h1>
     </ion-list-header>
     <button ion-item *ngFor="let task of userTasks" (click)="openTask(task)">
-      <p class="task-name">
+      <h2 class="task-name">
         {{task.name}}
-      </p>
-      <p class="task-date">
-        {{task.date}}
+      </h2>
+      <p>
+        Created <span class="task-date">{{task.date}}</span>
       </p>
       <br/>
       <p class="task-description">
         {{task.description}}
       </p>
+      <span class="badges">
+        <ion-badge>{{task.state}}</ion-badge>
+        <ion-badge *ngIf="task.userOwnsIt(owner)" color="red">Mine</ion-badge>
+
+      </span>
+
 
     </button>
   </ion-list>
