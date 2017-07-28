@@ -29,29 +29,23 @@ export class LoginPage {
 
   login() {
     this.loginData = new Credentials(this.usrName, this.usrPsw);
-    this.user = this.authService.authUser(this.loginData);
-    this.waitForResponse().then(() => {
-      setTimeout(() => {
-
-        if(this.user){
-          this.navCtrl.setRoot(HomePage, this.user);
-        }
-        else{
-          this.incorrectData();
-        }
-      }, 3000);
-    });
-  }
-
-  waitForResponse(){
     let loading = this.loadingCtrl.create({
       content: 'Logging in, please wait...',
-      spinner: 'circles',
-      duration: 3000
+      spinner: 'circles'
     });
-
-    return loading.present();
+    loading.present();
+    this.authService.authUser(this.loginData).subscribe(
+      (res: Response) => {
+        loading.dismiss();
+        console.log(res);
+        this.navCtrl.setRoot(HomePage, this.user);
+      },
+      () => {
+        loading.dismiss();
+        this.incorrectData();
+      });
   }
+
 
   incorrectData(){
     let alert = this.alertCtrl.create({

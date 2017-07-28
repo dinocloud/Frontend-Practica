@@ -9,5 +9,11 @@ export class Credentials {
     this.password = Md5.hashStr(password).toString();
   }
 
+  getCredentialsForRequest() : string {
+    let cred = this.userName + ':' + this.password,
+        encoded = btoa(cred);
+    return encoded;
+
+  }
 
 }

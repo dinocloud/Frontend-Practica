@@ -1,6 +1,8 @@
+//@Framework
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Md5 } from "ts-md5/dist/md5";
+import {Http, RequestOptions, Response} from "@angular/http";
+import { Observable } from "rxjs/Observable";
 
 //@Models
 import { User } from "../../models/user";
@@ -9,15 +11,18 @@ import { Credentials } from "../../models/credentials";
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor() {
+  private url : string = 'http://54.233.236.160/users/';
+
+  constructor(private http: Http) {
   }
 
-  authUser(c : Credentials){
-    let r;
-    if(c.userName == 'rodrigo94' && c.password == Md5.hashStr('password123').toString()){
-      r = new User(1, c.userName);
-    }
-    return r;
+  authUser(c : Credentials): Observable<any>{
+    let authHeader = 'Basic ' + c.getCredentialsForRequest();
+    let reqHead = new Headers({'Content-Type': 'application/json', 'Authorization': authHeader,
+                              'Access-Control-Allow-Origin': 'http://localhost:8100'});
+
+    return this.http.get(this.url, reqHead)
+                    .map((res: Response)=>res.json());
   }
 
   logout(){
