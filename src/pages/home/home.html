@@ -1,7 +1,7 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>
-      <h1>Pending tasks</h1>
+      <h1>Hello {{owner.getName()}}, your tasks are: </h1>
     </ion-list-header>
     <button ion-item *ngFor="let task of userTasks" (click)="openTask(task)">
       <h2 class="task-name">
@@ -15,12 +15,11 @@
         {{task.description}}
       </p>
       <span class="badges">
-        <ion-badge>{{task.state}}</ion-badge>
-        <ion-badge *ngIf="task.userOwnsIt(owner)" color="red">Mine</ion-badge>
+        <ion-badge class="state-badge">{{task.state}}</ion-badge>
+        <ion-badge class="user-owns-task-badge" *ngIf="task.userOwnsIt(owner)">Mine</ion-badge>
 
       </span>
-
-
+    <ion-icon name="arrow-forward" item-end></ion-icon>
     </button>
   </ion-list>
 </ion-content>
