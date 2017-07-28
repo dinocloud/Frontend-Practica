@@ -14,6 +14,9 @@ import {User} from "../../models/user";
 })
 export class HomePage {
 
+  //Different colors for each card
+  colors: Array<string> = ['blue', 'red', 'green'];
+
   userTasks: Array<Task>;
 
   owner = new User(1, 'rodrigo94');
@@ -28,5 +31,11 @@ export class HomePage {
 
   openTask(task: Task) {
     console.log(task.toString(),' ', task.unixEpoch);
+  }
+
+  getCardColor(i: number): string {
+    let currentIndex = Math.floor(i % this.colors.length);
+    let currentColor = this.colors[currentIndex];
+    return currentColor;
   }
 }

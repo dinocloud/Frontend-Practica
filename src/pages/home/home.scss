@@ -1,16 +1,58 @@
 page-home {
-  .task-name {
+  .content {
+    background-image: url('../../assets/img/dash-bg.jpg');
+    -webkit-background-image: url('../../assets/img/dash-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 
   }
+
+  #task-list-header {
+    text-align: center;
+    background-color: rgb(255, 255, 0);
+    color: #555555;
+    font-style: italic;
+  }
+
+
+  ion-card {
+    margin-bottom: 10px;
+    padding: 20px;
+
+  }
+
+  .card-blue {
+    background-color: rgba(72, 138, 255, 0.7);
+  }
+
+  .card-red {
+    background-color: rgba(255,24,16,0.7);
+  }
+
+  .card-green {
+    background-color: rgba(0,255,19,0.71);
+  }
+
+  .state-badge {
+    background-color: #7539ff;
+  }
+
+  .task-name {
+    size: 20em;
+  }
+
   .task-date {
 
   }
   .task-description {
 
   }
-  .state-badge {
-    background-color: #7539ff;
-  }
+
 
 
 }

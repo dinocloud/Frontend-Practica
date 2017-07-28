@@ -1,26 +1,28 @@
 <ion-content padding>
-  <ion-list>
-    <ion-list-header>
-      <h1>Hello {{owner.getName()}}, your tasks are: </h1>
+  <ion-list class="task-list">
+    <ion-list-header id="task-list-header">
+      <h1>
+        Hello {{owner.getName()}}, <br/>your tasks are here
+      </h1>
     </ion-list-header>
-    <button ion-item *ngFor="let task of userTasks" (click)="openTask(task)">
-      <h2 class="task-name">
-        {{task.name}}
-      </h2>
-      <p>
-        Created <span class="task-date">{{task.date}}</span>
-      </p>
-      <br/>
-      <p class="task-description">
-        {{task.description}}
-      </p>
-      <span class="badges">
+    <ion-card *ngFor="let task of userTasks; let i = index" [attr.data-index]="i"
+              (click)="openTask(task)"
+              class="card-{{getCardColor(i)}}">
+      <div class="task-name">{{task.name}}</div>
+      <div class="task-info">
+        <p>
+          Created <span class="task-date">{{task.date}}</span>
+        </p>
+        <p class="task-description">
+          {{task.description}}
+        </p>
+        <span class="badges">
         <ion-badge class="state-badge">{{task.state}}</ion-badge>
         <ion-badge class="user-owns-task-badge" *ngIf="task.userOwnsIt(owner)">Mine</ion-badge>
 
       </span>
-    <ion-icon name="arrow-forward" item-end></ion-icon>
-    </button>
+      </div>
+    </ion-card>
   </ion-list>
 </ion-content>
 
