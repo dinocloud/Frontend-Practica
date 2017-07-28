@@ -12,17 +12,21 @@ page-login {
     -o-background-size: cover;
 
     .login-input-box {
-      background-color: rgba(253,252,229, 0.75);
+      background-color: rgba(253,252,229, 0.8);
 
       .item.item-input {
         background-color: transparent;
       }
 
-      position: fixed;
+      width: 70%;
       height: 30%;
-      width: 80%;
-      top: 35%;
-      left: 10%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+
+      margin: auto;
 
       padding: 5%;
 

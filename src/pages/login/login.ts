@@ -60,5 +60,6 @@ export class LoginPage {
       buttons: ['Ok']
     });
     alert.present();
+    this.usrPsw = '';
   }
 }
