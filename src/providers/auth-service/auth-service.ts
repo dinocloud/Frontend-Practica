@@ -1,7 +1,7 @@
 //@Framework
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Http, Response } from "@angular/http";
+import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 //@Models
@@ -10,17 +10,17 @@ import { Credentials } from "../../models/credentials";
 @Injectable()
 export class AuthServiceProvider {
 
-  private url : string = 'http://54.233.236.160/users/';
+  private url : string = 'http://54.233.236.160/users/login/';
 
   constructor(private http: Http) {
   }
 
   authUser(c : Credentials): Observable<any>{
-    let authHeader = 'Basic ' + c.getCredentialsForRequest();
-    let reqHead = new Headers({'Content-Type': 'application/json', 'Authorization': authHeader,
-                              'Access-Control-Allow-Origin': 'http://localhost:8100/'});
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic '+c.getCredentialsForRequest());
 
-    return this.http.get(this.url, reqHead)
+
+    return this.http.get(this.url, { headers: headers})
                     .map((res: Response)=>res.json());
   }
 
