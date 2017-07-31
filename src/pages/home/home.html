@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title id="home-title">Hello, {{owner.getName()}}!</ion-title>
+    <ion-title id="home-title">Your tasks, {{owner.getName()}}!</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -24,7 +24,7 @@
         </p>
         <span class="badges">
         <ion-badge class="state-badge">{{task.state}}</ion-badge>
-        <ion-badge class="user-owns-task-badge" *ngIf="task.userOwnsIt(owner)">Mine</ion-badge>
+        <ion-badge class="user-owns-task-badge" *ngIf="task.userOwnsIt(owner)">MINE</ion-badge>
 
       </span>
       </div>
