@@ -1,10 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="home-title">Hello, {{owner.getName()}}!</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content padding>
   <ion-list class="task-list">
-    <ion-list-header id="task-list-header">
+<!--    <ion-list-header id="task-list-header">
       <h1>
         Hello {{owner.getName()}}, <br/>your tasks are here
       </h1>
-    </ion-list-header>
+    </ion-list-header>-->
     <ion-card *ngFor="let task of userTasks; let i = index" [attr.data-index]="i"
               (click)="openTask(task)"
               class="card-{{getCardColor(i)}}">
