@@ -21,7 +21,6 @@ export class LoginPage {
   user      : User;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               public authService : AuthServiceProvider,
               public loadingCtrl : LoadingController,
               public alertCtrl   : AlertController) {
