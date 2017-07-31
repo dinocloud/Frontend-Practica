@@ -7,6 +7,7 @@ import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 //@Models
 import {Task} from "../../models/task";
 import {User} from "../../models/user";
+import {TaskEditorPage} from "../task-editor/task-editor";
 
 @Component({
   selector: 'page-home',
@@ -30,7 +31,7 @@ export class HomePage {
   }
 
   openTask(task: Task) {
-    console.log(task.toString(),' ', task.unixEpoch);
+    this.navCtrl.push(TaskEditorPage, {'task': task});
   }
 
   getCardColor(i: number): string {

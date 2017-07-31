@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 //@Pages
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from "../pages/login/login";
+import { TaskEditorPage } from "../pages/task-editor/task-editor";
 //@Providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
@@ -17,7 +18,8 @@ import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    TaskEditorPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    TaskEditorPage
   ],
   providers: [
     StatusBar,

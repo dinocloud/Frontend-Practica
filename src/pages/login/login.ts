@@ -34,7 +34,7 @@ export class LoginPage {
       setTimeout(() => {
 
         if(this.user){
-          this.navCtrl.setRoot(HomePage, this.user);
+          this.navCtrl.setRoot(HomePage, {'owner': this.user});
         }
         else{
           this.incorrectData();
