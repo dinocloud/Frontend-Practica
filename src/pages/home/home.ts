@@ -38,4 +38,8 @@ export class HomePage {
     let currentColor = this.colors[currentIndex];
     return currentColor;
   }
+
+  addNewTask() {
+    console.log('add task')
+  }
 }
