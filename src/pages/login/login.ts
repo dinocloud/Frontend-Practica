@@ -36,7 +36,7 @@ export class LoginPage {
     this.authService.authUser(this.loginData).subscribe(
       (res: Response) => {
         loading.dismiss();
-        console.log(res);
+        this.user = new User(res['message']['id_user'], res['message']['username']);
         this.navCtrl.setRoot(HomePage, this.user);
       },
       () => {
