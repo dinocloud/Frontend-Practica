@@ -20,14 +20,13 @@ node {
     /*In this stage install the dependencies and create the apk */
     {
       sh "npm install"  /* Really important (it installs all your project dependencies) */
-      sh "ionic cordova platform rm android" /* Clean the old plattform */
       sh "ionic cordova platform add android" /* We say which plattform we built in the apk */
-      sh "ionic cordova build --release" /* APK release creation */
+      sh "ionic cordova build --android --release" /* APK release creation */
     }
 
     stage ('Upload apk to S3' )
     {
-        sh "./upload-apk-s3.sh"
+        sh "./upload-apk-s3.sh asd asd asds"
     }
 
     }
