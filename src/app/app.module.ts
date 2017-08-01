@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from "../pages/login/login";
 import { TaskEditorPage } from "../pages/task-editor/task-editor";
+import { TaskViewPage } from "../pages/task-view/task-view";
 //@Providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
@@ -19,7 +20,8 @@ import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
     MyApp,
     HomePage,
     LoginPage,
-    TaskEditorPage
+    TaskEditorPage,
+    TaskViewPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
     MyApp,
     HomePage,
     LoginPage,
-    TaskEditorPage
+    TaskEditorPage,
+    TaskViewPage
   ],
   providers: [
     StatusBar,

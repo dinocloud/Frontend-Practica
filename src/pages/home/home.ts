@@ -5,9 +5,11 @@ import { NavController } from 'ionic-angular';
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 //@Models
-import {Task} from "../../models/task";
-import {User} from "../../models/user";
-import {TaskEditorPage} from "../task-editor/task-editor";
+import { Task } from "../../models/task";
+import { User } from "../../models/user";
+//@Pages
+import { TaskEditorPage } from "../task-editor/task-editor";
+import { TaskViewPage } from "../task-view/task-view";
 
 @Component({
   selector: 'page-home',
@@ -31,7 +33,7 @@ export class HomePage {
   }
 
   openTask(task: Task) {
-    this.navCtrl.push(TaskEditorPage, {'task': task});
+    this.navCtrl.push(TaskViewPage, {'task': task});
   }
 
   getCardColor(i: number): string {
@@ -41,7 +43,7 @@ export class HomePage {
   }
 
   addNewTask() {
-    console.log('add task')
+    this.navCtrl.push(TaskEditorPage);
   }
 
   doRefresh(refresher) {
