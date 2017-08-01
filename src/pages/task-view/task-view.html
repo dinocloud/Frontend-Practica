@@ -7,33 +7,41 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{task.name}}</ion-title>
+    <ion-title>Task detail</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding >
-  <ion-list class="card-{{color}}">
-    <ion-item>
-      Description: {{task.description}}.
+  <ion-card class="card-{{color}}">
+    <ion-item no-lines id="task-name">
+      <h1>
+        {{task.name}}
+      </h1>
     </ion-item>
-    <ion-item>
+    <ion-item no-lines>
+      <h2>
+        Description: {{task.description}}.
+      </h2>
+    </ion-item>
+    <ion-item no-lines>
       Created {{task.date}}.
     </ion-item>
-    <ion-item>
+    <ion-item no-lines>
       Status: {{task.state}}.
     </ion-item>
-    <ion-item>
+    <ion-item no-lines>
       Participants:
-      <ion-item *ngFor="let u of task.users">
+      <ion-item no-lines *ngFor="let u of task.users">
         {{u.getName()}}
       </ion-item>
     </ion-item>
-    <ion-item>
+    <ion-item no-lines>
       Owner: {{task.getOwner()}}
+
     </ion-item>
-  </ion-list>
+  </ion-card>
 
 
 </ion-content>

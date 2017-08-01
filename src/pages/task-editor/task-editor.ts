@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 //@Models
-import { Task } from "../../models/task";
 
 /**
  * Generated class for the TaskEditorPage page.
@@ -15,13 +14,13 @@ import { Task } from "../../models/task";
   selector: 'page-task-editor',
   templateUrl: 'task-editor.html',
 })
-export class TaskEditorPage {
+export class TaskEditorPage implements OnInit{
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ngOnInit(){
-
+    //TODO
   }
 
 }

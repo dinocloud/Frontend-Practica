@@ -15,4 +15,12 @@ page-task-view {
   .item{
     background-color: transparent;
   }
+
+  ion-card {
+    padding: 5%;
+  }
+
+  #task-name {
+    text-align: center;
+  }
 }

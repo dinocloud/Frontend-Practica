@@ -15,7 +15,7 @@ import { TaskViewPage } from "../task-view/task-view";
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   //Different colors for each card
   colors : Array<string> = ['blue', 'red', 'green'];
