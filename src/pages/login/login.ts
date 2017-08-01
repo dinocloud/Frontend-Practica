@@ -1,6 +1,6 @@
 //@Framework
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController } from 'ionic-angular';
+import { AlertController, LoadingController, NavController, ToastController } from 'ionic-angular';
 //@Pages
 import { HomePage } from "../home/home";
 //@Models
@@ -20,10 +20,11 @@ export class LoginPage {
   usrPsw    : string;
   user      : User;
 
-  constructor(public navCtrl: NavController,
+  constructor(public navCtrl     : NavController,
               public authService : AuthServiceProvider,
               public loadingCtrl : LoadingController,
-              public alertCtrl   : AlertController) {
+              public alertCtrl   : AlertController,
+              public toastCtrl   : ToastController) {
   }
 
   login() {
@@ -34,9 +35,10 @@ export class LoginPage {
     });
     loading.present();
     this.authService.authUser(this.loginData).subscribe(
-      (res: Response) => {
+      res => {
         loading.dismiss();
-        this.user = new User(res['message']['id_user'], res['message']['username']);
+        this.user = new User(res.message.id_user, res.message.username);
+        this.presentToast();
         this.navCtrl.setRoot(HomePage, this.user);
       },
       (err: Error) => {
@@ -54,5 +56,19 @@ export class LoginPage {
     });
     alert.present();
     this.usrPsw = '';
+  }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: `Welcome ${this.user.getName()}! Login successfull`,
+      duration: 1500,
+      position: 'bottom'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
   }
 }
