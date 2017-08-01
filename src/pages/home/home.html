@@ -24,7 +24,7 @@
         </p>
         <span class="badges">
         <ion-badge class="state-badge">{{task.state}}</ion-badge>
-        <ion-badge class="user-owns-task-badge" *ngIf="task.userOwnsIt(owner)">MINE</ion-badge>
+        <ion-badge class="task-ownership-badge" *ngIf="task.userOwnsIt(owner)">MINE</ion-badge>
 
       </span>
       </div>

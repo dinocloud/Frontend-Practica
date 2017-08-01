@@ -15,31 +15,28 @@
 
 <ion-content padding >
   <ion-card class="card-{{color}}">
-    <ion-item no-lines id="task-name">
+    <ion-item text-wrap no-lines id="task-name">
       <h1>
         {{task.name}}
       </h1>
     </ion-item>
-    <ion-item no-lines>
+    <ion-item text-wrap no-lines>
       <h2>
         Description: {{task.description}}.
       </h2>
     </ion-item>
-    <ion-item no-lines>
+    <ion-item text-wrap no-lines>
       Created {{task.date}}.
     </ion-item>
     <ion-item no-lines>
-      Status: {{task.state}}.
+      Status: <ion-badge class="state-badge">{{task.state}}</ion-badge>
     </ion-item>
     <ion-item no-lines>
       Participants:
       <ion-item no-lines *ngFor="let u of task.users">
         {{u.getName()}}
+        <ion-badge class="task-ownership-badge" *ngIf="task.userOwnsIt(u)">OWNER</ion-badge>
       </ion-item>
-    </ion-item>
-    <ion-item no-lines>
-      Owner: {{task.getOwner()}}
-
     </ion-item>
   </ion-card>
 
