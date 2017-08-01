@@ -23,7 +23,11 @@ node {
       sh "ionic cordova platform rm android" /* Clean the old plattform */
       sh "ionic cordova platform add android" /* We say which plattform we built in the apk */
       sh "ionic cordova build --release" /* APK release creation */
-      sh "./upload-apk-s3.sh"
+    }
+
+    stage ('Upload apk to S3' )
+    {
+        sh "./upload-apk-s3.sh"
     }
 
     }
