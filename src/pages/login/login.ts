@@ -1,6 +1,6 @@
 //@Framework
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, LoadingController, NavController } from 'ionic-angular';
 //@Pages
 import { HomePage } from "../home/home";
 //@Models
@@ -39,7 +39,7 @@ export class LoginPage {
         this.user = new User(res['message']['id_user'], res['message']['username']);
         this.navCtrl.setRoot(HomePage, this.user);
       },
-      () => {
+      (err: Error) => {
         loading.dismiss();
         this.incorrectData();
       });

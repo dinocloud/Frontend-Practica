@@ -10,12 +10,12 @@ import { Credentials } from "../../models/credentials";
 @Injectable()
 export class AuthServiceProvider {
 
-  private url : string = 'http://54.233.236.160/users/login/';
+  private url : string = 'http://54.233.236.160/api/v1/users/login/';
 
   constructor(private http: Http) {
   }
 
-  authUser(c : Credentials): Observable<any>{
+  authUser(c : Credentials) : Observable<any>{
     let headers = new Headers();
     headers.append('Authorization', 'Basic '+c.getCredentialsForRequest());
 
