@@ -19,8 +19,8 @@ node {
     stage('Build APK')
     /*In this stage install the dependencies and create the apk */
     {
-      sh "npm install"  # Really important (it installs all your project dependencies)
-      sh "ionic cordova build --release" # APK release creation
+      sh "npm install"  /* Really important (it installs all your project dependencies) */
+      sh "ionic cordova build --release" /* APK release creation */
     }
 
     }
