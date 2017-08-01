@@ -14,5 +14,23 @@
 
 
 <ion-content padding>
-  <ion-input></ion-input>
+  <ion-list>
+    <ion-item>
+      Description: {{task.description}}.
+    </ion-item>
+    <ion-item>
+      Created {{task.date}}.
+    </ion-item>
+    <ion-item>
+      Status: {{task.state}}.
+    </ion-item>
+    <ion-item>
+      Participants: {{task.users}}.
+    </ion-item>
+    <ion-item>
+      Owner: {{task.getOwner()}}
+    </ion-item>
+  </ion-list>
+
+
 </ion-content>

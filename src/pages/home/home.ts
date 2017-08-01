@@ -29,7 +29,7 @@ export class HomePage {
   }
 
   ngOnInit(){
-    this.userTasks = this.usrTasks.getTasks(this.owner.getId());
+    this.userTasks = this.usrTasks.getTasks(this.owner);
   }
 
   openTask(task: Task) {

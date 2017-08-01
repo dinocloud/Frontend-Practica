@@ -61,6 +61,11 @@ export class Task{
     return this._ownerId;
   }
 
+  getOwner(): string {
+    let user = this.users.find(x => x.getId() == this._ownerId);
+    return user.getName();
+  }
+
   userOwnsIt(user: User): boolean {
     return this._ownerId == user.getId();
   }
