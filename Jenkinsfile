@@ -20,6 +20,7 @@ node {
     /*In this stage install the dependencies and create the apk */
     {
       sh "npm install"  /* Really important (it installs all your project dependencies) */
+      sh "ionic platform add android" /* We say which plattform we built in the apk */
       sh "ionic cordova build --release" /* APK release creation */
     }
 
