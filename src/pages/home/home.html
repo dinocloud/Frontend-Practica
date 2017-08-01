@@ -12,7 +12,7 @@
   </ion-refresher>
   <ion-list class="task-list">
     <ion-card *ngFor="let task of userTasks; let i = index" [attr.data-index]="i"
-              (click)="openTask(task)"
+              (click)="openTask(task, i)"
               class="card-{{getCardColor(i)}}">
       <div class="task-name">{{task.name}}</div>
       <div class="task-info">

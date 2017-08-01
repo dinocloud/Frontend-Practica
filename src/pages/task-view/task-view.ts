@@ -10,6 +10,7 @@ import { Task } from "../../models/task"
 })
 export class TaskViewPage {
   task: Task;
+  color: String;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -17,7 +18,7 @@ export class TaskViewPage {
   ngOnInit(){
 
     this.task = this.navParams.get('task');
-
+    this.color = this.navParams.get('color');
 
   }
 

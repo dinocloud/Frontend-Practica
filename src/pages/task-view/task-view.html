@@ -13,8 +13,8 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
+<ion-content padding >
+  <ion-list class="card-{{color}}">
     <ion-item>
       Description: {{task.description}}.
     </ion-item>
@@ -25,7 +25,10 @@
       Status: {{task.state}}.
     </ion-item>
     <ion-item>
-      Participants: {{task.users}}.
+      Participants:
+      <ion-item *ngFor="let u of task.users">
+        {{u.getName()}}
+      </ion-item>
     </ion-item>
     <ion-item>
       Owner: {{task.getOwner()}}

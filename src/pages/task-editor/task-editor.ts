@@ -17,13 +17,10 @@ import { Task } from "../../models/task";
 })
 export class TaskEditorPage {
 
-  task: Task;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ngOnInit(){
-    this.task = this.navParams.get('task');
 
   }
 

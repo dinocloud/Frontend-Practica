@@ -18,9 +18,9 @@ import { TaskViewPage } from "../task-view/task-view";
 export class HomePage {
 
   //Different colors for each card
-  colors: Array<string> = ['blue', 'red', 'green'];
+  colors : Array<string> = ['blue', 'red', 'green'];
 
-  userTasks: Array<Task>;
+  userTasks : Array<Task>;
 
   owner = new User(1, 'rodrigo94');
 
@@ -32,8 +32,8 @@ export class HomePage {
     this.userTasks = this.usrTasks.getTasks(this.owner);
   }
 
-  openTask(task: Task) {
-    this.navCtrl.push(TaskViewPage, {'task': task});
+  openTask(task: Task, colorIndex: number) {
+    this.navCtrl.push(TaskViewPage, {'task': task, 'color': this.getCardColor(colorIndex)});
   }
 
   getCardColor(i: number): string {
