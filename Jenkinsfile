@@ -17,7 +17,7 @@ node {
     }
 
     stage('Build APK')
-    /* In this stage install the dependencies and create the apk  */
+    /* In this stage install the dependencies and create the apk*/
     {
       sh "npm install"  /* Really important (it installs all your project dependencies) */
       sh "ionic platform add android || true " /* We say which plattform we built in the apk */
