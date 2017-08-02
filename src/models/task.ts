@@ -17,9 +17,8 @@ export class Task{
   _users       : Array<User>;
   _ownerId     : number;
 
-
-  constructor(id: number, name: string, description: string, createdAt: string, state: Status,
-              users: Array<User>, ownerId: number) {
+  constructor(id?: number, name?: string, description?: string, createdAt?: string, state?: Status,
+              users?: Array<User>, ownerId?: number) {
     this._id = id;
     this._name = name;
     this._description = description;

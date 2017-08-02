@@ -14,39 +14,49 @@
 
 
 <ion-content padding>
-  <ion-item>
-    <ion-label fixed>Name</ion-label>
-    <ion-input type="text"
-               [value]="task ? task.name : ''"
-               clearInput>
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label fixed>Description</ion-label>
-    <ion-input type="text"
-               [value]="task ? task.description : ''"
-               clearInput>
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label fixed>Status</ion-label>
-    <ion-select interface="popover">
-      <ion-option *ngFor="let s of stati; let i = index"
-                  [value]="s.id"
-                  selected="{{task ? task.status.id == s.id : (i==0).toString()}}">
-        {{s.description}}
-      </ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label fixed>Participants</ion-label>
-    <ion-select multiple="true">
-      <ion-option *ngFor="let u of users; let i = index"
-                  [value]="u.id"
-                  selected="{{task ? task.isUserAParticipant(u) : (i==0).toString()}}"
-                  [disabled]="task ? task.userOwnsIt(u) : false">
-        {{u.getName()}}
-      </ion-option>
-    </ion-select>
-  </ion-item>
+  <form (ngSubmit)="sendTask()" #editTaskForm="ngForm" class="edit-task-form">
+    <ion-item>
+      <ion-label fixed>Name</ion-label>
+      <ion-input type="text"
+                 [value]="task ? task.name : ''"
+                 clearInput
+                 required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Description</ion-label>
+      <ion-input type="text"
+                 [value]="task ? task.description : ''"
+                 clearInput
+                 required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Status</ion-label>
+      <ion-select interface="popover">
+        <ion-option *ngFor="let s of stati; let i = index"
+                    [value]="s.id"
+                    selected="{{task ? task.status.id == s.id : (i==0).toString()}}">
+          {{s.description}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Participants</ion-label>
+      <ion-select multiple="true">
+        <ion-option *ngFor="let u of users; let i = index"
+                    [value]="u.id"
+                    selected="{{task ? task.isUserAParticipant(u) : (i==0).toString()}}"
+                    [disabled]="task ? task.userOwnsIt(u) : false">
+          {{u.getName()}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button ion-button block class="send-task-button" type="submit"
+            [disabled]="!editTaskForm.form.valid">
+      {{sendButtonText}}
+    </button>
+
+  </form>
 </ion-content>
