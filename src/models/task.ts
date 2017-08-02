@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { Moment } from "moment";
 //@Models
 import { User } from "./user";
+import { Status } from "./status";
 
 
 export class Task{
@@ -11,19 +12,19 @@ export class Task{
   _name        : string;
   _description : string;
   _createdAt   : Moment;
-  _stateStr    : string;
+  _status       : Status;
 
   _users       : Array<User>;
   _ownerId     : number;
 
 
-  constructor(id: number, name: string, description: string, createdAt: string, stateStr: string,
+  constructor(id: number, name: string, description: string, createdAt: string, state: Status,
               users: Array<User>, ownerId: number) {
     this._id = id;
     this._name = name;
     this._description = description;
     this._createdAt = moment(createdAt);
-    this._stateStr = stateStr;
+    this._status = state;
     this._users = users;
     this._ownerId = ownerId;
   }
@@ -49,8 +50,8 @@ export class Task{
     return this._description;
   }
 
-  get state(): string {
-    return this._stateStr;
+  get status(): Status {
+    return this._status;
   }
 
   get users(): Array<User> {
