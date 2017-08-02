@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 //@Models
 import { Task } from "../../models/task"
+//@Pages
+import { TaskEditorPage } from "../task-editor/task-editor";
 
 @Component({
   selector: 'page-task-view',
   templateUrl: 'task-view.html',
 })
-export class TaskViewPage {
+export class TaskViewPage implements OnInit{
   task: Task;
   color: String;
 
@@ -23,4 +25,7 @@ export class TaskViewPage {
   }
 
 
+  editTask() {
+    this.navCtrl.push(TaskEditorPage, {'task': this.task});
+  }
 }
