@@ -16,7 +16,7 @@ export class UserTasksProvider {
 
   public getTasks(user : User) : Array<Task> {
     let userId = user.getId();
-    let another = new User(9, 'Otro');
+    let another = new User(0, 'Dino');
     let userTasks : Array<Task> = new Array<Task>();
     let stati = [new Status(0, 'PENDING'), new Status(1, 'DONE')];
 

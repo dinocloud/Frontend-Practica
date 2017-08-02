@@ -67,6 +67,10 @@ export class Task{
     return user.getName();
   }
 
+  isUserAParticipant(u : User) : boolean{
+    return this.users.find(x => x.getId() == u.getId()) != undefined;
+  }
+
   userOwnsIt(user: User): boolean {
     return this._ownerId == user.getId();
   }

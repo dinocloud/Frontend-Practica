@@ -33,8 +33,19 @@
     <ion-select interface="popover">
       <ion-option *ngFor="let s of stati; let i = index"
                   [value]="s.id"
-                  selected="{{(i==0).toString()}}">
+                  selected="{{task ? task.status.id == s.id : (i==0).toString()}}">
         {{s.description}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Participants</ion-label>
+    <ion-select multiple="true">
+      <ion-option *ngFor="let u of users; let i = index"
+                  [value]="u.id"
+                  selected="{{task ? task.isUserAParticipant(u) : (i==0).toString()}}"
+                  [disabled]="task ? task.userOwnsIt(u) : false">
+        {{u.getName()}}
       </ion-option>
     </ion-select>
   </ion-item>
