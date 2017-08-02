@@ -26,10 +26,13 @@ node {
 
     stage ('Upload apk to S3')
     {
+      /*
+
       withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'AWS_REGISTRY_PASS', usernameVariable: 'AWS_REGISTRY_USER')])
         {
         sh "./upload-apk-s3.sh $AWS_REGISTRY_PASS $AWS_REGISTRY_USER"
         }
+        */
     }
 
     }
