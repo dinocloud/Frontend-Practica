@@ -8,14 +8,14 @@ import { Status } from "./status";
 
 export class Task{
 
-  _id          : number;
-  _name        : string;
-  _description : string;
-  _createdAt   : Moment;
-  _status       : Status;
+  private _id          : number;
+  private _name        : string;
+  private _description : string;
+  private _createdAt   : Moment;
+  private _status       : Status;
 
-  _users       : Array<User>;
-  _ownerId     : number;
+  private _users       : Array<User>;
+  private _ownerId     : number;
 
   constructor(id?: number, name?: string, description?: string, createdAt?: string, state?: Status,
               users?: Array<User>, ownerId?: number) {
@@ -30,6 +30,11 @@ export class Task{
 
  get date(): string{
     return this._createdAt.format('ddd DD MMM YYYY @ HH:mm');
+  }
+
+
+  get createdAt(): moment.Moment {
+    return this._createdAt;
   }
 
   get unixEpoch(): string{
@@ -76,5 +81,40 @@ export class Task{
 
   public toString() : string{
     return `Id: ${ this.id } Name: ${ this.name } Created @ ${ this.date }`;
+  }
+
+
+  set id(value: number) {
+    this._id = value;
+  }
+
+  set name(value: string) {
+    this._name = value;
+  }
+
+  set description(value: string) {
+    this._description = value;
+  }
+
+  setCreatedAt() {
+    this._createdAt = moment();
+  }
+
+  set status(value: Status) {
+    this._status = value;
+  }
+
+  set users(value: Array<User>) {
+    this._users = value;
+  }
+
+  set ownerId(value: number) {
+    this._ownerId = value;
+  }
+
+  setOwner(owner : User){
+
+    this.users ? this.users.push(owner) : this.users = [owner];
+    this.ownerId = owner.getId();
   }
 }

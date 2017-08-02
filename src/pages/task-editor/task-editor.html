@@ -18,16 +18,19 @@
     <ion-item>
       <ion-label fixed>Name</ion-label>
       <ion-input type="text"
-                 [value]="task ? task.name : ''"
+
                  clearInput
+                 name="taskName"
+                 [(ngModel)]="newTask.name"
                  required>
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Description</ion-label>
       <ion-input type="text"
-                 [value]="task ? task.description : ''"
+                 [(ngModel)]="newTask.description"
                  clearInput
+                 name="taskDescription"
                  required>
       </ion-input>
     </ion-item>

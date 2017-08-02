@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import * as moment from 'moment';
@@ -45,13 +45,12 @@ export class UserTasksProvider{
   }
 
   putTask(task : Task) {
-    let i = this.userTasks.findIndex(x => x.id == task.id);
-    this.userTasks.splice(i, 1, task);
+    console.log('Put ', task.toString(), ' to the server');
   }
 
   getNextId() : number {
     //For the effects of the mocked up data, delete when the conection w/ Backend is established
-    return this.userTasks[this.userTasks.length--].id;
+    return this.userTasks[this.userTasks.length-1].id;
   }
 
 }
