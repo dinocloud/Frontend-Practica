@@ -14,4 +14,28 @@
 
 
 <ion-content padding>
+  <ion-item>
+    <ion-label fixed>Name</ion-label>
+    <ion-input type="text"
+               [value]="task ? task.name : ''"
+               clearInput>
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Description</ion-label>
+    <ion-input type="text"
+               [value]="task ? task.description : ''"
+               clearInput>
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Status</ion-label>
+    <ion-select interface="popover">
+      <ion-option *ngFor="let s of stati; let i = index"
+                  [value]="s.id"
+                  selected="{{(i==0).toString()}}">
+        {{s.description}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
 </ion-content>

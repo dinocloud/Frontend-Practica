@@ -1,6 +1,6 @@
 //@Framework
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
@@ -24,7 +24,9 @@ export class HomePage implements OnInit{
 
   owner = new User(1, 'rodrigo94');
 
-  constructor(public navCtrl: NavController, public usrTasks : UserTasksProvider) {
+  constructor(public navCtrl   : NavController,
+              public usrTasks  : UserTasksProvider,
+              public toastCtrl : ToastController) {
 
   }
 
@@ -47,11 +49,14 @@ export class HomePage implements OnInit{
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
 
     setTimeout(() => {
-      console.log('Async operation has ended');
       refresher.complete();
+      let toast = this.toastCtrl.create({
+        message  : 'Your tasks are up to date',
+        duration : 2000
+      });
+      toast.present();
     }, 2000);
   }
 }
