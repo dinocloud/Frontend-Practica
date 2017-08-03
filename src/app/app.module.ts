@@ -14,6 +14,8 @@ import { TaskViewPage } from "../pages/task-view/task-view";
 //@Providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
+import { HttpModule } from "@angular/http";
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
