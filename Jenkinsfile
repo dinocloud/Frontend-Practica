@@ -21,7 +21,7 @@ node {
     {
       sh "npm install"  /* Really important (it installs all your project dependencies) */
       sh "ionic platform add android || true " /* We say which plattform we built in the apk */
-      sh "ionic build android --release" /* APK release creation */
+      sh "ionic build android --release " /* APK release creation */
     }
 
     stage ('Upload apk to S3')
