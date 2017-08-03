@@ -1,23 +1,27 @@
+//@Framework
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { Md5 } from "ts-md5/dist/md5";
+import { Http, Headers, Response } from "@angular/http";
+import { Observable } from "rxjs/Observable";
 
 //@Models
-import { User } from "../../models/user";
 import { Credentials } from "../../models/credentials";
 
 @Injectable()
 export class AuthServiceProvider {
 
-  constructor() {
+  private url : string = 'http://54.233.236.160/api/v1/users/login/';
+
+  constructor(private http: Http) {
   }
 
-  authUser(c : Credentials){
-    let r;
-    if(c.userName == 'rodrigo94' && c.password == Md5.hashStr('password123').toString()){
-      r = new User(1, c.userName);
-    }
-    return r;
+  authUser(c : Credentials) : Observable<any>{
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic '+c.getCredentialsForRequest());
+
+
+    return this.http.get(this.url, { headers: headers})
+                    .map((res: Response)=>res.json());
   }
 
   logout(){
