@@ -25,8 +25,8 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <platform name="android">
         <allow-intent href="market:*"/>
-        <preference name="android-minSdkVersion" value="23"/>
-        <preference name="android-targetSdkVersion" value="23"/>
+        <preference name="android-minSdkVersion" value="25"/>
+        <preference name="android-targetSdkVersion" value="25"/>
         <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
         <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
         <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
