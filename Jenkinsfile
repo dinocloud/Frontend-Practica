@@ -4,11 +4,11 @@ node {
 
     apkTag = (env.BRANCH_NAME == "master")? "latest" : "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
 
-    parameters
+    /*parameters
      {
     string(name:'STORE_PASSWORD', defaultValue:'dinocloud123$', description: 'STORE_PASSWORD is the password use when we built keystore.')
     string(name:'PATH_TO_KEYSTORE',defaultValue:'/home/ubuntu/dinocloud.keystore', description:'PATH_TO_KEYSTORE is the path where we have the keystore key')
-     }
+     }*/
 
 
     stage('Checkout')
