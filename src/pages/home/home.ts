@@ -45,7 +45,7 @@ export class HomePage implements OnInit{
   }
 
   addNewTask() {
-    this.navCtrl.push(TaskEditorPage);
+    this.navCtrl.push(TaskEditorPage, {'owner': this.owner});
   }
 
   doRefresh(refresher) {
