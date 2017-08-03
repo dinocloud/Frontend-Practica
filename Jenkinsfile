@@ -16,11 +16,6 @@ node {
         checkout scm
     }
 
-    stage('Env')
-    {
-      sh "source /var/lib/jenkins/.bashrc"
-    }
-
     stage('Build APK')
     /*In this stage install the dependencies */
     {
