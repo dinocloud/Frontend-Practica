@@ -1,3 +1,62 @@
 page-home {
 
+  ion-card {
+    margin-bottom: 10px;
+    padding: 20px;
+
+  }
+
+/*  .card-blue {
+    background-color: rgba(72, 138, 255, 0.7);
+  }
+
+  .card-red {
+    background-color: rgba(255, 96, 15, 0.7);
+  }
+
+  .card-green {
+    background-color: rgba(0,255,19,0.7);
+  }*/
+
+  /*.status-badge {
+    background-color: crimson;
+  }
+
+  .user-owns-task-badge {
+    background-color: darkblue;
+  }*/
+  .task-name {
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  .task-date {
+    font-style: italic;
+  }
+
+  .task-description {
+
+  }
+
+  .header .toolbar-title {
+    text-align: center;
+    font-size: large;
+  }
+
+  ion-content, .scroll-content {
+    background-image: url('../../assets/img/dash-bg.jpg');
+    -webkit-background-image: url('../../assets/img/dash-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
+  }
+
+  ion-refresher-content {
+    background-color: rgba(48, 48, 0, 0.5);
+  }
 }

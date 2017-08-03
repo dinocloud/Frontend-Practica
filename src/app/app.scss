@@ -15,6 +15,27 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+// Card colors for the dashboard and the single task viewer
+.card-blue {
+  background-color: rgba(72, 138, 255, 0.7);
+}
+
+.card-red {
+  background-color: rgba(255, 96, 15, 0.7);
+}
+
+.card-green {
+  background-color: rgba(0,255,19,0.7);
+}
+
+// Badges indicating current status and ownership
+.state-badge {
+  background-color: crimson;
+}
+
+.task-ownership-badge {
+  background-color: darkblue;
+
 //override
 .button {
   background-color: darkred;

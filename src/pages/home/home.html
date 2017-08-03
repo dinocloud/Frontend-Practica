@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title id="home-title">Your tasks, {{owner.getName()}}!</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingText="Pull to refresh"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="task-list">
+    <ion-card *ngFor="let task of userTasks; let i = index" [attr.data-index]="i"
+              (click)="openTask(task, i)"
+              class="card-{{getCardColor(i)}}">
+      <div class="task-name">{{task.name}}</div>
+      <div class="task-info">
+        <p>
+          Created <span class="task-date">{{task.date}}</span>
+        </p>
+        <p class="task-description">
+          {{task.description}}
+        </p>
+        <span class="badges">
+        <ion-badge class="state-badge">{{task.status.description}}</ion-badge>
+        <ion-badge class="task-ownership-badge" *ngIf="task.userOwnsIt(owner)">MINE</ion-badge>
+
+      </span>
+      </div>
+    </ion-card>
+  </ion-list>
+  <ion-fab right bottom >
+    <button ion-fab color="light" (click)="addNewTask()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+

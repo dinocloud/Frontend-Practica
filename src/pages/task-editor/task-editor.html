@@ -1,0 +1,68 @@
+<!--
+  Generated template for the TaskEditorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="sendTask()" #editTaskForm="ngForm" class="edit-task-form">
+    <ion-item>
+      <ion-label fixed>Name</ion-label>
+      <ion-input type="text"
+
+                 clearInput
+                 name="taskName"
+                 [(ngModel)]="newTask.name"
+                 required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Description</ion-label>
+      <ion-input type="text"
+                 [(ngModel)]="newTask.description"
+                 clearInput
+                 name="taskDescription"
+                 required>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Status</ion-label>
+      <ion-select interface="popover" [(ngModel)]="newTask.status"
+                  name="statusSelect" required>
+        <ion-option *ngFor="let s of stati; let i = index"
+                    [value]="s"
+                    [selected]="(i==0).toString()">
+
+          <!--selected="{{task ? task.status.id == s.id : (i==0).toString()}}"-->
+          {{s.description}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Participants</ion-label>
+      <ion-select multiple="true" (ionChange)="onSelectChange($event)" name="participantsSelect">
+        <ion-option *ngFor="let u of users; let i = index"
+                    [value]="u"
+                    selected="{{newTask ? newTask.isUserAParticipant(u) : (i==0).toString()}}"
+                    [disabled]="newTask ? newTask.userOwnsIt(u) : false">
+          {{u.getName()}}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button ion-button block class="send-task-button" type="submit"
+            [disabled]="!editTaskForm.form.valid">
+      {{sendButtonText}}
+    </button>
+
+  </form>
+</ion-content>

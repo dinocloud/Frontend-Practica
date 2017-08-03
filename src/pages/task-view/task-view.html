@@ -1,0 +1,49 @@
+<!--
+  Generated template for the TaskViewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Task detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+  <ion-card class="card-{{color}}">
+    <ion-item text-wrap no-lines id="task-name">
+      <h1>
+        {{task.name}}
+      </h1>
+    </ion-item>
+    <ion-item text-wrap no-lines>
+      <h2>
+        Description: {{task.description}}.
+      </h2>
+    </ion-item>
+    <ion-item text-wrap no-lines>
+      Created {{task.date}}.
+    </ion-item>
+    <ion-item no-lines>
+      Status: <ion-badge class="state-badge">{{task.status.description}}</ion-badge>
+    </ion-item>
+    <ion-item no-lines>
+      Participants:
+      <ion-item no-lines *ngFor="let u of task.users">
+        {{u.getName()}}
+        <ion-badge class="task-ownership-badge" *ngIf="task.userOwnsIt(u)">OWNER</ion-badge>
+      </ion-item>
+    </ion-item>
+  </ion-card>
+  <ion-fab right bottom >
+    <button ion-fab color="light" (click)="editTask()">
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+</ion-content>
