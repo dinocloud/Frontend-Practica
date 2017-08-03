@@ -36,9 +36,11 @@
     </ion-item>
     <ion-item>
       <ion-label fixed>Status</ion-label>
-      <ion-select interface="popover" [(ngModel)]="newTask.status" name="statusSelect">
+      <ion-select interface="popover" [(ngModel)]="newTask.status"
+                  name="statusSelect" required>
         <ion-option *ngFor="let s of stati; let i = index"
-                    [value]="s">
+                    [value]="s"
+                    [selected]="(i==0).toString()">
 
           <!--selected="{{task ? task.status.id == s.id : (i==0).toString()}}"-->
           {{s.description}}

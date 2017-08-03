@@ -1,3 +1,43 @@
 page-task-editor {
+  ion-content, .scroll-content {
+    background-image: url('../../assets/img/dash-bg.jpg');
+    -webkit-background-image: url('../../assets/img/dash-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
+  }
+
+  .send-task-button {
+    position: fixed;
+    bottom: 2.5%;
+    left: 0;
+    width: 100%;
+  }
+
+  .edit-task-form{
+    width: 80%;
+    height: 40%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    margin: auto;
+    background-color: rgba(255, 255, 0, 0.71);
+
+    .item {
+      background-color: transparent;
+    }
+
+    .label {
+      color: #222222;
+    }
+  }
 
 }
