@@ -29,18 +29,8 @@ export class LoginPage {
 
   login() {
     this.loginData = new Credentials(this.usrName, this.usrPsw);
-    this.user = this.authService.authUser(this.loginData);
-    this.waitForResponse().then(() => {
-      setTimeout(() => {
 
-        if(this.user){
-          this.navCtrl.setRoot(HomePage, {'owner': this.user});
-        }
-        else{
-          this.incorrectData();
-        }
-      }, 3000);
-    });
+    this.waitForResponse();
   }
 
   waitForResponse(){
