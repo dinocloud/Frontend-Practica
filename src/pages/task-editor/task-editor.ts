@@ -30,7 +30,7 @@ export class TaskEditorPage implements OnInit{
 
   ngOnInit(){
     this.stati = [new Status(0, 'PENDING'), new Status(1, 'DONE')];
-    this.users = [ new User(0, 'Dino'), new User(1, 'rodrigo94'), new User(2, 'lucre'), new User(3, 'juan')];
+    this.users = [ new User(0, 'Dino'), new User(1, 'rodri'), new User(2, 'lucre'), new User(3, 'juan')];
     this.task = this.navParams.get('task');
     // A task param indicates that the page should modify the user's task
     // If no task is passed, it should create a new one, and the logged-in user should be it's owner
@@ -70,7 +70,7 @@ export class TaskEditorPage implements OnInit{
       this.userTaskProv.postTask(this.newTask);
 
     }
-    this.navCtrl.goToRoot({});
+    this.navCtrl.pop();
   }
 
   onSelectChange(selectedValue : any) {
