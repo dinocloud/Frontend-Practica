@@ -20,6 +20,7 @@ node {
     /*In this stage install the dependencies */
     {
       sh "npm install"  /* Really important (it installs all your project dependencies) */
+      sh "cordova platform rm android"
       sh "cordova platform add android " /* We say which plattform we built in the apk */
       sh "cordova build android --release " /* APK release creation */
     }
