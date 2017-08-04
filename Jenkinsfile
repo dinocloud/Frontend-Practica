@@ -26,7 +26,7 @@ node {
       sh "mv platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/${apkTag}.apk"
 
 
-      /*sh "jarsigner -keystore $PATH_TO_KEYSTORE platforms/android/build/outputs/apk/${apkTag}.apk -storepass $STORE_PASSWORD " # Signing the APK
+      /*sh "jarsigner -keystore $PATH_TO_KEYSTORE platforms/android/build/outputs/apk/${apkTag}.apk -storepass $STORE_PASSWORD " # Signing the APK */
 
 
     }
