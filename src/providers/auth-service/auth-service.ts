@@ -18,6 +18,7 @@ export class AuthServiceProvider {
   authUser(c : Credentials) : Observable<any>{
     let headers = new Headers();
     headers.append('Authorization', 'Basic '+c.getCredentialsForRequest());
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:8100/');
 
 
     return this.http.get(this.url, { headers: headers})

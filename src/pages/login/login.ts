@@ -38,7 +38,7 @@ export class LoginPage {
       content: 'Logging in, please wait...',
       spinner: 'circles'
     });
-    loading.present();
+/*    loading.present();
     this.authService.authUser(this.loginData).subscribe(
       res => {
         loading.dismiss();
@@ -49,7 +49,10 @@ export class LoginPage {
       (err: Error) => {
         loading.dismiss();
         this.incorrectData();
-      });
+      });*/
+    this.user = new User(1, 'rodri');
+    this.presentToast();
+    this.navCtrl.setRoot(HomePage, {'user': this.user});
   }
 
 
