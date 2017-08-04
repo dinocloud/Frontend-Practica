@@ -2,7 +2,7 @@ String apkTag = null
 
 node {
 
-    apkTag = (env.BRANCH_NAME == "master")? "latest" : "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+    apkTag = (env.BRANCH_NAME == "master")? "0.0.${env.BUILD_NUMBER}" : "0.0.${env.BUILD_NUMBER}-${env.BRANCH_NAME}"
 
     parameters
      {
@@ -23,6 +23,12 @@ node {
       sh "cordova platform rm android" /* Remove the old platform */
       sh "cordova platform add android " /* We say which plattform we built in the apk */
       sh "cordova build android --release " /* APK release creation */
+      sh "mv platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/apkTag.apk"
+
+
+      /*sh "jarsigner -keystore $PATH_TO_KEYSTORE platforms/android/build/outputs/apk/apkTag.apk -storepass $STORE_PASSWORD " # Signing the APK
+
+
     }
 
     stage ('Upload apk to S3')
