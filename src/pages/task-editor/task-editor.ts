@@ -77,7 +77,4 @@ export class TaskEditorPage implements OnInit{
     this.newTask.users = selectedValue;
   }
 
-  onSelectChangeStatus(value) {
-    console.log(value);
-  }
 }

@@ -40,9 +40,17 @@
     </ion-item>
   </ion-card>
   <ion-fab right bottom >
-    <button ion-fab color="light" (click)="editTask()">
-      <ion-icon name="create"></ion-icon>
+    <button ion-fab color="light">
+      <ion-icon name="arrow-dropleft"></ion-icon>
     </button>
+    <ion-fab-list side="left">
+      <button ion-fab color="light" (click)="editTask()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+      <button ion-fab color="light" (click)="deleteTask()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-fab-list>
   </ion-fab>
 
 
