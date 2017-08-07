@@ -1,4 +1,8 @@
 #!/bin/bash
+echo $1
+echo $2
+echo $AWS_REGISTRY_PASS
+echo $AWS_REGISTRY_USER
 path=$1
 file=$2
 aws_path='/apks'
