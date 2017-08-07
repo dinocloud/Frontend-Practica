@@ -19,4 +19,11 @@ curl -X PUT -T "$path/$file" \
   -H "Content-Type: $content_type" \
   -H "$acl" \
   -H "Authorization: AWS ${AWS_REGISTRY_PASS}:$signature" \
-  "https://$bucket.s3.amazonaws.com$aws_path$file"
+  "https://$bucket.s3.amazonaws.com/$aws_path$file"
+
+/*curl -X PUT -T "platforms/android/build/outputs/apk/0.0.48-devops_files" \
+  -H "Host: practica-apks.s3.amazonaws.com" \
+  -H "Content-Type: application/x-compressed-tar" \
+  -H "x-amz-acl:public-read" \
+  -H "Authorization: AWS ${Da0sgYVIpzpPQnJIiZ+6nlq5ltVeSz0GgHBowEVC}" \
+  "https://practica-apks.s3.amazonaws.com/android/build/outputs/apk/0.0.48-devops_files"*/
