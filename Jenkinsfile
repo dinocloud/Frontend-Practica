@@ -31,9 +31,9 @@ node {
     {
       withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'AWS_REGISTRY_PASS', usernameVariable: 'AWS_REGISTRY_USER')])
       {
-        sh "echo ${apkTag}"
+        sh "echo '${apkTag}'"
         sh "./upload-apk-s3.sh '$platforms/android/build/outputs/apk' '${apkTag}.apk' '$AWS_REGISTRY_PASS' '$AWS_REGISTRY_USER' "
-        sh "echo ${apkTag}"
+        sh "echo '${apkTag}'"
       }
     }
 
