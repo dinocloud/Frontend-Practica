@@ -24,21 +24,16 @@ node {
       sh "cordova platform add android " /* We say which plattform we built in the apk */
       sh "cordova build android --release " /* APK release creation */
       sh "mv platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/${apkTag}.apk"
-
-
       /*sh "jarsigner -keystore $PATH_TO_KEYSTORE platforms/android/build/outputs/apk/${apkTag}.apk -storepass $STORE_PASSWORD " # Signing the APK */
-
-
-    }
+   }
 
     stage ('Upload apk to S3')
     {
       withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'AWS_REGISTRY_PASS', usernameVariable: 'AWS_REGISTRY_USER')])
       {
         sh "echo ${apkTag}"
-        sh "./upload-apk-s3.sh $platforms/android/build/outputs/apk ${apkTag}.apk $AWS_REGISTRY_PASS $AWS_REGISTRY_USER"
+        sh "./upload-apk-s3.sh '$platforms/android/build/outputs/apk' '${apkTag}.apk' '$AWS_REGISTRY_PASS' '$AWS_REGISTRY_USER' "
         sh "echo ${apkTag}"
-
       }
     }
 
