@@ -29,9 +29,9 @@ node {
 
     stage ('Upload apk to S3')
     {
-      withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'AWS_REGISTRY_PASS', usernameVariable: 'AWS_USERNAME')])
+      withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'AWS_SECRET_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')])
       {
-        sh "./upload-apk-s3.sh platforms/android/build/outputs/apk ${apkTag}.apk $AWS_REGISTRY_PASS $AWS_USERNAME "
+        sh "./upload-apk-s3.sh $(pwd)/platforms/android/build/outputs/apk ${apkTag}.apk $AWS_ACCESS_KEY_ID $AWS_SECRET_KEY "
         sh "echo '${apkTag}'"
       }
     }
@@ -42,5 +42,3 @@ node {
     }*/
 
     }
-
-/*sh "./upload-apk-s3.sh $platforms/android/build/outputs/apk $0.0.43-devops_files Da0sgYVIpzpPQnJIiZ+6nlq5ltVeSz0GgHBowEVC $AKIAJRU4MFYJK7HOPJBQ "*/
