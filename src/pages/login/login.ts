@@ -1,5 +1,5 @@
 //@Framework
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {  AlertController,
           LoadingController,
           NavController,
@@ -17,7 +17,7 @@ import { CredentialStorageProvider } from "../../providers/credential-storage/cr
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage implements OnInit{
+export class LoginPage{
 
   loginData : Credentials;
   usrName   : string;
@@ -30,16 +30,6 @@ export class LoginPage implements OnInit{
               public alertCtrl        : AlertController,
               public toastCtrl        : ToastController,
               public credentialStore  : CredentialStorageProvider) {
-  }
-
-  ngOnInit() {
-    this.credentialStore.getStoredCredentials().then((val) => {
-      if(val) {
-        this.loginData = val;
-        this.navCtrl.setRoot(HomePage, {'userCred' : this.loginData});
-      }
-    });
-
   }
 
   login() {
