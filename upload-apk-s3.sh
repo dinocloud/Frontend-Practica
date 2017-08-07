@@ -12,6 +12,7 @@ acl="x-amz-acl:public-read"
 content_type='application/x-compressed-tar'
 string="PUT\n\n$content_type\n$date\n$acl\n/$bucket$aws_path$file"
 signature=$(echo -en "${string}" | openssl sha1 -hmac "${AWS_REGISTRY_USER}" -binary | base64)
+echo $1
 curl -X PUT -T "$path/$file" \
   -H "Host: $bucket.s3.amazonaws.com" \
   -H "Date: $date" \

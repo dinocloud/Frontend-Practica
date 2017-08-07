@@ -43,3 +43,5 @@ node {
     }*/
 
     }
+
+/*sh "./upload-apk-s3.sh $platforms/android/build/outputs/apk $0.0.43-devops_files $Da0sgYVIpzpPQnJIiZ+6nlq5ltVeSz0GgHBowEVC $AKIAJRU4MFYJK7HOPJBQ "*/
