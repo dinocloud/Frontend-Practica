@@ -1,6 +1,9 @@
 //@Framework
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/timeout';
+import 'rxjs/add/operator/delay';
 import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
@@ -21,7 +24,10 @@ export class AuthServiceProvider {
 
 
     return this.http.get(this.url, { headers: headers})
-                    .map((res: Response)=>res.json());
+      .retry(2)
+      .delay(10)
+      .timeout(10000)
+      .map((res: Response)=>res.json());
   }
 
   logout(){

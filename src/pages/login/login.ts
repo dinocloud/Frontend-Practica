@@ -1,6 +1,9 @@
 //@Framework
-import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController, ToastController } from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {  AlertController,
+          LoadingController,
+          NavController,
+          ToastController} from 'ionic-angular';
 //@Pages
 import { HomePage } from "../home/home";
 //@Models
@@ -8,32 +11,40 @@ import {Credentials} from "../../models/credentials";
 import { User } from "../../models/user";
 //@Providers
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { CredentialStorageProvider } from "../../providers/credential-storage/credential-storage";
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage {
+export class LoginPage implements OnInit{
 
   loginData : Credentials;
   usrName   : string;
   usrPsw    : string;
   user      : User;
 
-  constructor(public navCtrl     : NavController,
-              public authService : AuthServiceProvider,
-              public loadingCtrl : LoadingController,
-              public alertCtrl   : AlertController,
-              public toastCtrl   : ToastController) {
+  constructor(public navCtrl          : NavController,
+              public authService      : AuthServiceProvider,
+              public loadingCtrl      : LoadingController,
+              public alertCtrl        : AlertController,
+              public toastCtrl        : ToastController,
+              public credentialStore  : CredentialStorageProvider) {
+  }
+
+  ngOnInit() {
+    this.credentialStore.getStoredCredentials().then((val) => {
+      if(val) {
+        this.loginData = val;
+        this.navCtrl.setRoot(HomePage, {'userCred' : this.loginData});
+      }
+    });
+
   }
 
   login() {
     this.loginData = new Credentials(this.usrName, this.usrPsw);
 
-    this.waitForResponse();
-  }
-
-  waitForResponse(){
     let loading = this.loadingCtrl.create({
       content: 'Logging in, please wait...',
       spinner: 'circles'
@@ -43,6 +54,7 @@ export class LoginPage {
       res => {
         loading.dismiss();
         this.user = new User(res.message.id_user, res.message.username);
+        this.credentialStore.saveCredentials(this.loginData);
         this.presentToast();
         this.navCtrl.setRoot(HomePage, this.user);
       },
@@ -51,6 +63,7 @@ export class LoginPage {
         this.incorrectData();
       });
   }
+
 
 
   incorrectData(){
