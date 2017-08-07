@@ -1,8 +1,8 @@
 #!/bin/bash
 path=$1
 file=$2
-AWS_REGISTRY_PASS = $3
-AWS_USERNAME = $4
+AWS_REGISTRY_PASS=$3
+AWS_USERNAME=$4
 aws_path='/apks'
 bucket='practica-apks'
 date=$(date +"%a, %d %b %Y %T %z")
@@ -26,3 +26,5 @@ curl -X PUT -T "$path/$file" \
   -H "x-amz-acl:public-read" \
   -H "Authorization: AWS Da0sgYVIpzpPQnJIiZ+6nlq5ltVeSz0GgHBowEVC:$(echo -en \"${string}\" | openssl sha1 -hmac "" -binary | base64)" \
   "https://practica-apks.s3.amazonaws.com/apks/0.0.49-devops_files.apk"*/
+
+
