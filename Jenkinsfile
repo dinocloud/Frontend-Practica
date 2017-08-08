@@ -1,4 +1,5 @@
 String apkTag = null
+String pwd = null
 
 node {
 
