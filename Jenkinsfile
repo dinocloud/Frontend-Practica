@@ -31,7 +31,8 @@ node {
     {
       withCredentials([usernamePassword(credentialsId: 'aws-credentials', passwordVariable: 'AWS_SECRET_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')])
       {
-        sh "./upload-apk-s3.sh $(pwd)/platforms/android/build/outputs/apk $apkTag.apk $AWS_ACCESS_KEY_ID $AWS_SECRET_KEY "
+        pwd = sh "pwd"
+        sh "./upload-apk-s3.sh $pwd/platforms/android/build/outputs/apk $apkTag.apk $AWS_ACCESS_KEY_ID $AWS_SECRET_KEY "
       }
     }
 
@@ -41,3 +42,4 @@ node {
     }*/
 
     }
+
