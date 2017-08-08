@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from "@angular/http";
 import 'rxjs/add/operator/map';
 
-import * as moment from 'moment';
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
 import { Status } from "../../models/status";
+//@Providers
+import { UsersProvider } from "../users/users";
+import {TaskStatusProvider} from "../task-status/task-status";
 
 
 @Injectable()
@@ -13,11 +16,13 @@ export class UserTasksProvider{
 
   userTasks : Array<Task> = new Array<Task>();
 
-  constructor() {
+  constructor(public http : Http,
+              public usrProv : UsersProvider,
+              public stateProv : TaskStatusProvider) {
   }
 
   public getTasks(user : User) : Array<Task> {
-    if(this.userTasks.length == 0) {
+    /*if(this.userTasks.length == 0) {
       let userId = user.getId();
       let another = new User(0, 'Dino');
       let stati = [new Status(1, 'Pending'), new Status(2, 'Done')];
@@ -34,7 +39,36 @@ export class UserTasksProvider{
       this.userTasks.push(new Task(5, 'Task #6', 'asdfg2',
         moment().add(2, 'month').toISOString(), stati[0], [user, another], userId));
 
-    }
+    }*/
+    let headers = new Headers();
+    headers.append('Authorization', user.cred.getCredentialsForRequest());
+    this.http.get('http://54.233.236.160/api/v1/tasks/get_tasks_per_user/', {headers : headers})
+      .map((res : Response)=>res.json())
+      .subscribe(res => {
+        for(let t of res.all_tasks){
+          let owner = this.usrProv.users.find(x => x.getId() == t.owner.id_user);
+
+          let users = [owner];
+          for(let u of t.users) {
+            let user = this.usrProv.users.find(x => x.getId() == u.id_user);
+            users.push(user);
+          }
+
+          let state = this.stateProv.retrieveTaskStati().find(x => x.id == t.task.id_task_status);
+
+          let task = new Task(
+            t.task.id_task,
+            t.task.task_name,
+            t.task.task_description,
+            t.task.date_created,
+            state,
+            users,
+            owner.getId()
+          );
+
+          this.userTasks.push(task);
+        }
+      });
 
     return this.userTasks;
 

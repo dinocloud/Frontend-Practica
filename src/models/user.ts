@@ -1,6 +1,9 @@
+import {Credentials} from "./credentials";
+
 export class User {
   _id   : number;
   _name : string;
+  private _cred : Credentials;
 
   constructor(
     id   : number,
@@ -17,5 +20,14 @@ export class User {
 
   getName(): string {
     return this._name;
+  }
+
+
+  get cred(): Credentials {
+    return this._cred;
+  }
+
+  set cred(value: Credentials) {
+    this._cred = value;
   }
 }
