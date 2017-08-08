@@ -46,7 +46,7 @@ export class LoginPage{
         this.user = new User(res.message.id_user, res.message.username);
         this.credentialStore.saveCredentials(this.loginData);
         this.presentToast();
-        this.navCtrl.setRoot(HomePage, {'user': this.user});
+        this.navCtrl.setRoot(HomePage, {'owner' : this.user});
       },
       (err: Error) => {
         loading.dismiss();

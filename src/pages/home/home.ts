@@ -33,6 +33,7 @@ export class HomePage implements OnInit{
 
   stati : Array<Status>;
 
+
   constructor(public navCtrl        : NavController,
               public navParams      : NavParams,
               public usrTasks       : UserTasksProvider,
@@ -44,7 +45,7 @@ export class HomePage implements OnInit{
   }
 
   ngOnInit() {
-    this.owner = this.navParams.get('user');
+    this.owner = this.navParams.get('owner');
     this.users = this.usersProv.retrieveUsers();
     this.stati = this.statProv.retrieveTaskStati();
     this.userTasks = this.usrTasks.getTasks(this.owner);
