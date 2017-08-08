@@ -17,6 +17,7 @@ import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
 
 import { TaskStatusProvider } from '../providers/task-status/task-status';
 import { HttpModule } from "@angular/http";
+import { UsersProvider } from '../providers/users/users';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { HttpModule } from "@angular/http";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     UserTasksProvider,
-    TaskStatusProvider
+    TaskStatusProvider,
+    UsersProvider
   ]
 })
 export class AppModule {}

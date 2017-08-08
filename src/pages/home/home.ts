@@ -4,6 +4,8 @@ import { NavController, ToastController } from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
+import { TaskStatusProvider } from "../../providers/task-status/task-status";
+import { UsersProvider } from "../../providers/users/users";
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
@@ -11,7 +13,6 @@ import { User } from "../../models/user";
 import { TaskEditorPage } from "../task-editor/task-editor";
 import { TaskViewPage } from "../task-view/task-view";
 import {Status} from "../../models/status";
-import {TaskStatusProvider} from "../../providers/task-status/task-status";
 
 @Component({
   selector: 'page-home',
@@ -26,16 +27,20 @@ export class HomePage implements OnInit{
 
   owner = new User(1, 'rodrigo94');
 
+  users : Array<User>;
+
   stati : Array<Status>;
 
   constructor(public navCtrl   : NavController,
               public usrTasks  : UserTasksProvider,
               public toastCtrl : ToastController,
-              public statProv  : TaskStatusProvider) {
+              public statProv  : TaskStatusProvider,
+              public usersProv : UsersProvider) {
 
   }
 
   ngOnInit() {
+    this.users = this.usersProv.retrieveUsers();
     this.stati = this.statProv.retrieveTaskStati();
     this.userTasks = this.usrTasks.getTasks(this.owner);
   }
