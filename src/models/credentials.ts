@@ -13,7 +13,7 @@ export class Credentials {
   getCredentialsForRequest() : string {
     let cred = this.userName + ':' + this.password,
         encoded = btoa(cred);
-    return encoded;
+    return 'Basic '+encoded;
 
   }
 

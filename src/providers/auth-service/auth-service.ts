@@ -17,7 +17,7 @@ export class AuthServiceProvider {
 
   authUser(c : Credentials) : Observable<any>{
     let headers = new Headers();
-    headers.append('Authorization', 'Basic '+c.getCredentialsForRequest());
+    headers.append('Authorization', c.getCredentialsForRequest());
 
 
     return this.http.get(this.url, { headers: headers})
