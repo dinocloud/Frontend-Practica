@@ -8,6 +8,7 @@ import { User } from "../../models/user";
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 import { TaskStatusProvider } from "../../providers/task-status/task-status";
+import { UsersProvider } from "../../providers/users/users";
 
 
 @Component({
@@ -27,13 +28,14 @@ export class TaskEditorPage implements OnInit{
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public userTaskProv : UserTasksProvider,
-              public statProv : TaskStatusProvider) {
+              public statProv : TaskStatusProvider,
+              public usersProv : UsersProvider) {
   }
 
   ngOnInit(){
-    // this.stati = this.navParams.get('stati');
+
     this.stati = this.statProv.retrieveTaskStati();
-    this.users = [ new User(0, 'Dino'), new User(1, 'rodrigo94'), new User(2, 'lucre'), new User(3, 'juan')];
+    this.users = this.usersProv.users;
     this.task = this.navParams.get('task');
     // A task param indicates that the page should modify the user's task
     // If no task is passed, it should create a new one, and the logged-in user should be it's owner
