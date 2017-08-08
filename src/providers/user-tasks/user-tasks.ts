@@ -20,7 +20,7 @@ export class UserTasksProvider{
     if(this.userTasks.length == 0) {
       let userId = user.getId();
       let another = new User(0, 'Dino');
-      let stati = [new Status(0, 'PENDING'), new Status(1, 'DONE')];
+      let stati = [new Status(1, 'Pending'), new Status(2, 'Done')];
       this.userTasks.push(new Task(0, 'Task #1', 'asdfg0',
         moment().toISOString(), stati[0], [user, another], userId));
       this.userTasks.push(new Task(1, 'Task #2', 'asdfg1',

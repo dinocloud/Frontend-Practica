@@ -8,10 +8,13 @@ import { CredentialStorageProvider } from "../../providers/credential-storage/cr
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
+import { TaskStatusProvider } from "../../providers/task-status/task-status";
 //@Pages
 import { TaskEditorPage } from "../task-editor/task-editor";
 import { TaskViewPage } from "../task-view/task-view";
-import {LoginPage} from "../login/login";
+import { LoginPage } from "../login/login";
+import { Status } from "../../models/status";
+
 
 @Component({
   selector: 'page-home',
@@ -26,21 +29,25 @@ export class HomePage implements OnInit{
 
   owner :  User;
 
+  stati : Array<Status>;
+
   constructor(public navCtrl        : NavController,
               public navParams      : NavParams,
               public usrTasks       : UserTasksProvider,
               public toastCtrl      : ToastController,
-              public credentialStore : CredentialStorageProvider) {
+              public credentialStore : CredentialStorageProvider,
+              public statProv  : TaskStatusProvider) {
 
   }
 
   ngOnInit() {
     this.owner = this.navParams.get('user');
+    this.stati = this.statProv.retrieveTaskStati();
     this.userTasks = this.usrTasks.getTasks(this.owner);
   }
 
   openTask(task: Task, colorIndex: number) {
-    this.navCtrl.push(TaskViewPage, {'task': task, 'color': this.getCardColor(colorIndex)});
+    this.navCtrl.push(TaskViewPage, {'task': task, 'color': this.getCardColor(colorIndex), 'stati': this.stati});
   }
 
   getCardColor(i: number): string {
@@ -50,7 +57,7 @@ export class HomePage implements OnInit{
   }
 
   addNewTask() {
-    this.navCtrl.push(TaskEditorPage, {'owner': this.owner});
+    this.navCtrl.push(TaskEditorPage, {'owner': this.owner, 'stati': this.stati});
   }
 
   doRefresh(refresher) {
