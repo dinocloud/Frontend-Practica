@@ -7,6 +7,7 @@ import { Status } from "../../models/status";
 import { User } from "../../models/user";
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
+import { TaskStatusProvider } from "../../providers/task-status/task-status";
 
 
 @Component({
@@ -25,11 +26,13 @@ export class TaskEditorPage implements OnInit{
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public userTaskProv : UserTasksProvider) {
+              public userTaskProv : UserTasksProvider,
+              public statProv : TaskStatusProvider) {
   }
 
   ngOnInit(){
-    this.stati = [new Status(0, 'PENDING'), new Status(1, 'DONE')];
+    // this.stati = this.navParams.get('stati');
+    this.stati = this.statProv.retrieveTaskStati();
     this.users = [ new User(0, 'Dino'), new User(1, 'rodrigo94'), new User(2, 'lucre'), new User(3, 'juan')];
     this.task = this.navParams.get('task');
     // A task param indicates that the page should modify the user's task
@@ -70,14 +73,11 @@ export class TaskEditorPage implements OnInit{
       this.userTaskProv.postTask(this.newTask);
 
     }
-    this.navCtrl.goToRoot({});
+    this.navCtrl.pop();
   }
 
   onSelectChange(selectedValue : any) {
     this.newTask.users = selectedValue;
   }
 
-  onSelectChangeStatus(value) {
-    console.log(value);
-  }
 }

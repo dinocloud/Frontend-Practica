@@ -14,6 +14,8 @@ import { TaskViewPage } from "../pages/task-view/task-view";
 //@Providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
+
+import { TaskStatusProvider } from '../providers/task-status/task-status';
 import { HttpModule } from "@angular/http";
 
 
@@ -43,7 +45,8 @@ import { HttpModule } from "@angular/http";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    UserTasksProvider
+    UserTasksProvider,
+    TaskStatusProvider
   ]
 })
 export class AppModule {}

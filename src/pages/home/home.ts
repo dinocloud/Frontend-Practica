@@ -10,6 +10,8 @@ import { User } from "../../models/user";
 //@Pages
 import { TaskEditorPage } from "../task-editor/task-editor";
 import { TaskViewPage } from "../task-view/task-view";
+import {Status} from "../../models/status";
+import {TaskStatusProvider} from "../../providers/task-status/task-status";
 
 @Component({
   selector: 'page-home',
@@ -24,18 +26,22 @@ export class HomePage implements OnInit{
 
   owner = new User(1, 'rodrigo94');
 
+  stati : Array<Status>;
+
   constructor(public navCtrl   : NavController,
               public usrTasks  : UserTasksProvider,
-              public toastCtrl : ToastController) {
+              public toastCtrl : ToastController,
+              public statProv  : TaskStatusProvider) {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.stati = this.statProv.retrieveTaskStati();
     this.userTasks = this.usrTasks.getTasks(this.owner);
   }
 
   openTask(task: Task, colorIndex: number) {
-    this.navCtrl.push(TaskViewPage, {'task': task, 'color': this.getCardColor(colorIndex)});
+    this.navCtrl.push(TaskViewPage, {'task': task, 'color': this.getCardColor(colorIndex), 'stati': this.stati});
   }
 
   getCardColor(i: number): string {
@@ -45,7 +51,7 @@ export class HomePage implements OnInit{
   }
 
   addNewTask() {
-    this.navCtrl.push(TaskEditorPage, {'owner': this.owner});
+    this.navCtrl.push(TaskEditorPage, {'owner': this.owner, 'stati': this.stati});
   }
 
   doRefresh(refresher) {
