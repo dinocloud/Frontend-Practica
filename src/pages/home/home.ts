@@ -5,16 +5,16 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 import { CredentialStorageProvider } from "../../providers/credential-storage/credential-storage";
+import { TaskStatusProvider } from "../../providers/task-status/task-status";
+import { UsersProvider } from "../../providers/users/users";
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
-import { TaskStatusProvider } from "../../providers/task-status/task-status";
 //@Pages
 import { TaskEditorPage } from "../task-editor/task-editor";
 import { TaskViewPage } from "../task-view/task-view";
 import { LoginPage } from "../login/login";
 import { Status } from "../../models/status";
-
 
 @Component({
   selector: 'page-home',
@@ -29,6 +29,8 @@ export class HomePage implements OnInit{
 
   owner :  User;
 
+  users : Array<User>;
+
   stati : Array<Status>;
 
   constructor(public navCtrl        : NavController,
@@ -36,12 +38,14 @@ export class HomePage implements OnInit{
               public usrTasks       : UserTasksProvider,
               public toastCtrl      : ToastController,
               public credentialStore : CredentialStorageProvider,
-              public statProv  : TaskStatusProvider) {
+              public statProv  : TaskStatusProvider,
+              public usersProv : UsersProvider) {
 
   }
 
   ngOnInit() {
     this.owner = this.navParams.get('user');
+    this.users = this.usersProv.retrieveUsers();
     this.stati = this.statProv.retrieveTaskStati();
     this.userTasks = this.usrTasks.getTasks(this.owner);
   }

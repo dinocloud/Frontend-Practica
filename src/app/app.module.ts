@@ -15,10 +15,10 @@ import { TaskViewPage } from "../pages/task-view/task-view";
 //@Providers
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
-
 import { TaskStatusProvider } from '../providers/task-status/task-status';
 import { HttpModule } from "@angular/http";
 import { CredentialStorageProvider } from '../providers/credential-storage/credential-storage';
+import { UsersProvider } from '../providers/users/users';
 
 
 @NgModule({
@@ -57,8 +57,10 @@ import { CredentialStorageProvider } from '../providers/credential-storage/crede
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     UserTasksProvider,
+
     CredentialStorageProvider,
-    TaskStatusProvider
+    TaskStatusProvider,
+    UsersProvider
   ]
 })
 export class AppModule {}
