@@ -14,7 +14,7 @@ import {TaskStatusProvider} from "../task-status/task-status";
 @Injectable()
 export class UserTasksProvider{
 
-  userTasks : Array<Task> = new Array<Task>();
+  userTasks : Array<Task>;
 
   constructor(public http : Http,
               public usrProv : UsersProvider,
@@ -22,24 +22,7 @@ export class UserTasksProvider{
   }
 
   public getTasks(user : User) : Array<Task> {
-    /*if(this.userTasks.length == 0) {
-      let userId = user.getId();
-      let another = new User(0, 'Dino');
-      let stati = [new Status(1, 'Pending'), new Status(2, 'Done')];
-      this.userTasks.push(new Task(0, 'Task #1', 'asdfg0',
-        moment().toISOString(), stati[0], [user, another], userId));
-      this.userTasks.push(new Task(1, 'Task #2', 'asdfg1',
-        moment().subtract(14, 'hour').toISOString(), stati[1], [user, another], 9));
-      this.userTasks.push(new Task(2, 'Task #3', 'asdfg2',
-        moment().add(1, 'week').toISOString(), stati[1], [user, another], userId));
-      this.userTasks.push(new Task(3, 'Task #4', 'asdfg0',
-        moment().toISOString(), stati[0], [user, another], userId));
-      this.userTasks.push(new Task(4, 'Task #5', 'asdfg1',
-        moment().subtract(20, 'hour').toISOString(), stati[1], [user, another], 9));
-      this.userTasks.push(new Task(5, 'Task #6', 'asdfg2',
-        moment().add(2, 'month').toISOString(), stati[0], [user, another], userId));
-
-    }*/
+    this.userTasks = [];
     let headers = new Headers();
     headers.append('Authorization', user.cred.getCredentialsForRequest());
     this.http.get('http://54.233.236.160/api/v1/tasks/get_tasks_per_user/', {headers : headers})
@@ -83,7 +66,7 @@ export class UserTasksProvider{
   }
 
   getNextId() : number {
-    //For the effects of the mocked up data, delete when the conection w/ Backend is established
+    //For the effects of the mocked up data, delete when the connection w/ Backend is established
     return this.userTasks[this.userTasks.length-1].id;
   }
 
