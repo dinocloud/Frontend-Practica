@@ -15,17 +15,24 @@ import {TaskStatusProvider} from "../task-status/task-status";
 export class UserTasksProvider{
 
   userTasks : Array<Task>;
+  baseURL = 'http://54.233.236.160/api/v1/';
+  private _authHeader : Headers;
+
 
   constructor(public http : Http,
               public usrProv : UsersProvider,
               public stateProv : TaskStatusProvider) {
   }
 
-  public getTasks(user : User) : Array<Task> {
+
+  setAuthForUser(user : User) {
+    this._authHeader = new Headers();
+    this._authHeader.append('Authorization', user.cred.getCredentialsForRequest());
+  }
+
+  public getTasks() : Array<Task> {
     this.userTasks = [];
-    let headers = new Headers();
-    headers.append('Authorization', user.cred.getCredentialsForRequest());
-    this.http.get('http://54.233.236.160/api/v1/tasks/get_tasks_per_user/', {headers : headers})
+    this.http.get(this.baseURL+'tasks/get_tasks_per_user/', {headers : this._authHeader})
       .map((res : Response)=>res.json())
       .subscribe(res => {
         for(let t of res.all_tasks){
@@ -58,21 +65,33 @@ export class UserTasksProvider{
   }
 
   postTask(task : Task) {
-    this.userTasks.push(task);
+    // this.userTasks.push(task);
+    let usersId = [];
+    for(let u of task.users){
+      if(!task.userOwnsIt(u)) {
+        usersId.push(u.getId());
+      }
+
+    }
+    return this.http.post(this.baseURL+'tasks/',
+      {
+      "task_name": task.name,
+      "task_description": task.description,
+      "users" : usersId
+      },
+      { headers: this._authHeader})
+      .map((res : Response)=>res.json());
+
   }
 
   putTask(task : Task) {
     console.log('Put ', task.toString(), ' to the server');
   }
 
-  delete(task : Task) {
+  deleteTask(task : Task) {
     let i = this.userTasks.findIndex(x => x.id == task.id);
     this.userTasks.splice(i, 1);
   }
 
-  getNextId() : number {
-    //For the effects of the mocked up data, delete when the connection w/ Backend is established
-    return this.userTasks[this.userTasks.length-1].id;
-  }
 
 }

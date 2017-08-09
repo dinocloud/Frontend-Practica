@@ -37,7 +37,7 @@ export class TaskViewPage implements OnInit{
   deleteTask() {
     let alert = this.alertCtrl.create({
       title: 'Atention!',
-      message: 'Do you really want to delete this task?',
+      message: 'Do you really want to deleteTask this task?',
       buttons: [
         {
           text: 'Cancel',
@@ -49,7 +49,7 @@ export class TaskViewPage implements OnInit{
         {
           text: 'Delete',
           handler: () => {
-            this.usrTaskProv.delete(this.task);
+            this.usrTaskProv.deleteTask(this.task);
             let toast = this.toastCtrl.create({
               message: `${this.task.name} deleted!`,
               duration: 1500,

@@ -70,9 +70,11 @@ export class TaskEditorPage implements OnInit{
       this.userTaskProv.putTask(this.task);
     }
     else {
-      this.newTask.id = this.userTaskProv.getNextId();
       this.newTask.setCreatedAt();
-      this.userTaskProv.postTask(this.newTask);
+      this.userTaskProv.postTask(this.newTask).subscribe((res) => {
+        console.log(res);
+      },
+        err => console.log(err));
 
     }
     this.navCtrl.pop();

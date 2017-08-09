@@ -48,7 +48,8 @@ export class HomePage implements OnInit{
     this.owner = this.navParams.get('owner');
     this.users = this.usersProv.retrieveUsers();
     this.stati = this.statProv.retrieveTaskStati();
-    this.userTasks = this.usrTasks.getTasks(this.owner);
+    this.usrTasks.setAuthForUser(this.owner);
+    this.userTasks = this.usrTasks.getTasks();
   }
 
   openTask(task: Task, colorIndex: number) {
