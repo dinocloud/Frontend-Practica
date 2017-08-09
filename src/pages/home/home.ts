@@ -1,6 +1,6 @@
 //@Framework
 import { Component, OnInit } from '@angular/core';
-import {LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
+import {AlertController, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
@@ -33,14 +33,15 @@ export class HomePage implements OnInit{
 
   stati : Array<Status>;
 
-  constructor(public navCtrl        : NavController,
-              public navParams      : NavParams,
-              public usrTasks       : UserTasksProvider,
-              public toastCtrl      : ToastController,
+  constructor(public navCtrl         : NavController,
+              public navParams       : NavParams,
+              public usrTasks        : UserTasksProvider,
+              public toastCtrl       : ToastController,
               public credentialStore : CredentialStorageProvider,
-              public statProv       : TaskStatusProvider,
-              public usersProv      : UsersProvider,
-              public loadingCtrl    : LoadingController) {
+              public statProv        : TaskStatusProvider,
+              public usersProv       : UsersProvider,
+              public loadingCtrl     : LoadingController,
+              public alertCtrl       : AlertController) {
 
   }
 
@@ -125,18 +126,38 @@ export class HomePage implements OnInit{
 
 
   logoutButtonClick() {
-    this.credentialStore.removeCredentials().then( () => {
-      let toast = this.toastCtrl.create({
-        message: `Goodbye!`,
-        duration: 1500,
-        position: 'bottom'
-      });
+
+    let alert = this.alertCtrl.create({
+      title: 'Atention!',
+      message: "Do you want to sign off? You can always sign in again.",
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.credentialStore.removeCredentials().then( () => {
+              let toast = this.toastCtrl.create({
+                message: `Goodbye!`,
+                duration: 1500,
+                position: 'bottom'
+              });
 
 
-      toast.present();
+              toast.present();
 
-      this.navCtrl.setRoot(LoginPage);
+              this.navCtrl.setRoot(LoginPage);
+            });
+          }
+        }
+      ]
     });
+    alert.present();
 
   }
 }

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from "@angular/http";
 import 'rxjs/add/operator/map';
+import { Observable } from "rxjs/Observable";
 
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
-import { Status } from "../../models/status";
 //@Providers
 import { UsersProvider } from "../users/users";
-import {TaskStatusProvider} from "../task-status/task-status";
-import {Observable} from "rxjs/Observable";
+import { TaskStatusProvider } from "../task-status/task-status";
 
 
 @Injectable()
