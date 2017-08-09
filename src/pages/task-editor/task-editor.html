@@ -34,10 +34,10 @@
                  required>
       </ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="this.task">
       <ion-label fixed>Status</ion-label>
       <ion-select interface="popover" [(ngModel)]="newTask.status"
-                  name="statusSelect" required>
+                  name="statusSelect" required >
         <ion-option *ngFor="let s of stati; let i = index"
                     [value]="s"
                     [selected]="(i==0).toString()">

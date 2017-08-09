@@ -53,6 +53,7 @@ export class TaskEditorPage implements OnInit{
     else {
       this.currentUser = this.navParams.get('owner');
       this.newTask = new Task();
+      this.newTask.status = this.stati[0];
       this.currentUser ? this.newTask.setOwner(this.currentUser) :
                           console.error('A user should be passed for the new task');
       this.pageTitle = 'New task';
