@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bricks">
   <form (ngSubmit)="sendTask()" #editTaskForm="ngForm" class="edit-task-form">
     <ion-item>
       <ion-label fixed>Name</ion-label>
@@ -59,7 +59,7 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button block class="send-task-button" type="submit"
+    <button ion-button block class="send-task-button bottom-button" type="submit"
             [disabled]="!editTaskForm.form.valid">
       {{sendButtonText}}
     </button>

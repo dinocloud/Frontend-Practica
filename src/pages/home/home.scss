@@ -5,15 +5,7 @@ page-home {
     padding: 20px;
 
   }
-
-  .button {
-    background-color: transparent;
-  }
-
-  .button:hover {
-    background-color: transparent;
-  }
-
+  
   .task-name {
     font-size: 1.4em;
     text-align: center;
@@ -32,18 +24,6 @@ page-home {
     font-size: large;
   }
 
-  ion-content, .scroll-content {
-    background-image: url('../../assets/img/dash-bg.jpg');
-    -webkit-background-image: url('../../assets/img/dash-bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-
-  }
 
   ion-refresher-content {
     background-color: rgba(48, 48, 0, 0.5);

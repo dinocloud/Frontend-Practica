@@ -37,11 +37,38 @@
   background-color: darkblue;
 }
 //override
-.button {
+.bottom-button {
   background-color: darkred;
 }
 
-.button:hover {
+.bottom-button:hover {
   background-color: rgb(175,0,0);
+}
+
+.bricks {
+  ion-refresher, .scroll-content {
+    background-image: url('../assets/img/dash-bg.jpg');
+    -webkit-background-image: url('../assets/img/dash-bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+
+}
+
+.login-form {
+  background-image: url('../assets/img/bg.jpg');
+  -webkit-background-image: url('../assets/img/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 

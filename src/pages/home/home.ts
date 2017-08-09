@@ -1,6 +1,6 @@
 //@Framework
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
@@ -24,16 +24,17 @@ export class HomePage implements OnInit{
 
   userTasks : Array<Task>;
 
-  owner = new User(1, 'rodrigo94');
+  owner :  User;
 
-  constructor(public navCtrl          : NavController,
-              public usrTasks         : UserTasksProvider,
-              public toastCtrl        : ToastController,
-              public credentialStore  : CredentialStorageProvider) {
+  constructor(public navCtrl   : NavController,
+              public navParams : NavParams,
+              public usrTasks  : UserTasksProvider,
+              public toastCtrl : ToastController) {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
+    this.owner = this.navParams.get('user');
     this.userTasks = this.usrTasks.getTasks(this.owner);
   }
 

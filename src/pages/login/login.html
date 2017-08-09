@@ -12,6 +12,7 @@
                 type="text"
                 autocorrect="false"
                 required
+                clearInput
                 name="usrName"
                 [(ngModel)]="usrName">
               </ion-input>
@@ -31,7 +32,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <button ion-button block class="login-button" type="submit"
+          <button ion-button block class="login-button bottom-button" type="submit"
                   [disabled]="!loginForm.form.valid">Login</button>
         </ion-col>
       </ion-row>
