@@ -1,6 +1,6 @@
 //@Framework
 import { Component, OnInit } from '@angular/core';
-import {NavController, NavParams, ToastController} from 'ionic-angular';
+import {LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
@@ -33,14 +33,14 @@ export class HomePage implements OnInit{
 
   stati : Array<Status>;
 
-
   constructor(public navCtrl        : NavController,
               public navParams      : NavParams,
               public usrTasks       : UserTasksProvider,
               public toastCtrl      : ToastController,
               public credentialStore : CredentialStorageProvider,
-              public statProv  : TaskStatusProvider,
-              public usersProv : UsersProvider) {
+              public statProv       : TaskStatusProvider,
+              public usersProv      : UsersProvider,
+              public loadingCtrl    : LoadingController) {
 
   }
 
@@ -49,7 +49,6 @@ export class HomePage implements OnInit{
     this.users = this.usersProv.retrieveUsers();
     this.stati = this.statProv.retrieveTaskStati();
     this.usrTasks.setAuthForUser(this.owner);
-    this.userTasks = this.usrTasks.getTasks();
   }
 
   openTask(task: Task, colorIndex: number) {
@@ -66,17 +65,58 @@ export class HomePage implements OnInit{
     this.navCtrl.push(TaskEditorPage, {'owner': this.owner, 'stati': this.stati});
   }
 
-  doRefresh(refresher) {
-
-    setTimeout(() => {
-      refresher.complete();
-      let toast = this.toastCtrl.create({
-        message  : 'Your tasks are up to date',
-        duration : 2000
-      });
-      toast.present();
-    }, 2000);
+  ionViewDidEnter(){
+    this.refreshTasksFromServer();
   }
+
+  refreshTasksFromServer(refresher ? : any){
+    this.userTasks = [];
+    let loading;
+    if(!refresher){
+      loading = this.loadingCtrl.create({
+        content: 'Refreshing your tasks',
+        spinner: 'circles'
+      });
+      loading.present();
+    }
+    this.usrTasks.getTasksObservable().subscribe(res => {
+      for(let t of res.all_tasks){
+        let owner = this.users.find(x => x.getId() == t.owner.id_user);
+
+        let users = [owner];
+        for(let u of t.users) {
+          let user = this.users.find(x => x.getId() == u.id_user);
+          users.push(user);
+        }
+
+        let state = this.stati.find(x => x.id == t.task.id_task_status);
+
+        let task = new Task(
+          t.task.id_task,
+          t.task.task_name,
+          t.task.task_description,
+          t.task.date_created,
+          state,
+          users,
+          owner.getId()
+        );
+
+        this.userTasks.push(task);
+      }
+      if(refresher){
+        refresher.complete();
+        let toast = this.toastCtrl.create({
+          message  : 'Your tasks are up to date',
+          duration : 2000
+        });
+        toast.present();
+      }
+      else{
+        loading.dismiss();
+      }
+  })
+  }
+
 
   logoutButtonClick() {
     this.credentialStore.removeCredentials().then( () => {

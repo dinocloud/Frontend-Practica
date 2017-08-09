@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding class="bricks">
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher (ionRefresh)="refreshTasksFromServer($event)">
     <ion-refresher-content
       pullingText="Pull to refresh"
       refreshingText="Refreshing...">
