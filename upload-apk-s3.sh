@@ -15,4 +15,3 @@ curl --verbose -k -X PUT -T "$path/$file" \
   -H "Content-Type: $content_type" \
   -H "Authorization: AWS ${AWS_ACCESS_KEY_ID}:$signature" \
   "https://$bucket.s3.amazonaws.com/$aws_path/$file"
-
