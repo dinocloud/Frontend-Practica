@@ -12,6 +12,7 @@ node {
     stage('Build APK')
     /*In this stage, we build the apk using ionic cordova framework */
     {
+      sh "npm uninstall --no-save"
       sh "npm install"  /* Really important (it installs all your project dependencies) */
       sh "ionic cordova platform rm android || true " /* Remove the old platform */
       sh "ionic cordova platform add android " /* We say which plattform we built in the apk */
