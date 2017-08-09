@@ -57,7 +57,6 @@ import { UsersProvider } from '../providers/users/users';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     UserTasksProvider,
-
     CredentialStorageProvider,
     TaskStatusProvider,
     UsersProvider

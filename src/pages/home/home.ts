@@ -10,11 +10,11 @@ import { UsersProvider } from "../../providers/users/users";
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
+import { Status } from "../../models/status";
 //@Pages
 import { TaskEditorPage } from "../task-editor/task-editor";
 import { TaskViewPage } from "../task-view/task-view";
 import { LoginPage } from "../login/login";
-import { Status } from "../../models/status";
 
 @Component({
   selector: 'page-home',

@@ -21,7 +21,6 @@ export class AuthServiceProvider {
   authUser(c : Credentials) : Observable<any>{
     let headers = new Headers();
     headers.append('Authorization', c.getCredentialsForRequest());
-
     return this.http.get(this.url, { headers: headers})
       .retry(2)
       .delay(10)
