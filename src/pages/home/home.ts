@@ -26,10 +26,11 @@ export class HomePage implements OnInit{
 
   owner :  User;
 
-  constructor(public navCtrl   : NavController,
-              public navParams : NavParams,
-              public usrTasks  : UserTasksProvider,
-              public toastCtrl : ToastController) {
+  constructor(public navCtrl        : NavController,
+              public navParams      : NavParams,
+              public usrTasks       : UserTasksProvider,
+              public toastCtrl      : ToastController,
+              public credentialStore : CredentialStorageProvider) {
 
   }
 
