@@ -6,7 +6,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from "../pages/login/login";
 import {HomePage} from "../pages/home/home";
 //@Providers
-import {CredentialStorageProvider} from "../providers/credential-storage/credential-storage";
+import { CredentialStorageProvider } from "../providers/credential-storage/credential-storage";
+//@Models
+import { User } from "../models/user";
+import { Credentials } from "../models/credentials";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +31,11 @@ export class MyApp {
 
       credentialsStore.getStoredCredentials().then((val) => {
         if(val) {
-          this.nav.setRoot(HomePage);
+          let user = new User(val._id, val._name);
+          //Is already hashed, hence the third parameter
+          user.cred = new Credentials(val._cred.userName, val._cred.password, true);
+          console.log(user.cred.getCredentialsForRequest());
+          this.nav.setRoot(HomePage, { 'owner' : user});
         }
       });
 

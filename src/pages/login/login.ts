@@ -44,9 +44,8 @@ export class LoginPage{
       res => {
         loading.dismiss();
         this.user = new User(res.message.id_user, res.message.username);
-        //TODO use the cred in the storage service, not the user
-        this.credentialStore.saveCredentials(this.loginData);
         this.user.cred = this.loginData;
+        this.credentialStore.saveCredentials(this.user);
         this.presentToast();
         this.navCtrl.setRoot(HomePage, {'owner' : this.user});
       },
