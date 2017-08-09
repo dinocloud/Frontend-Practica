@@ -4,12 +4,14 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
+import { CredentialStorageProvider } from "../../providers/credential-storage/credential-storage";
 //@Models
 import { Task } from "../../models/task";
 import { User } from "../../models/user";
 //@Pages
 import { TaskEditorPage } from "../task-editor/task-editor";
 import { TaskViewPage } from "../task-view/task-view";
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-home',
@@ -60,5 +62,21 @@ export class HomePage implements OnInit{
       });
       toast.present();
     }, 2000);
+  }
+
+  logoutButtonClick() {
+    this.credentialStore.removeCredentials().then( () => {
+      let toast = this.toastCtrl.create({
+        message: `Goodbye!`,
+        duration: 1500,
+        position: 'bottom'
+      });
+
+
+      toast.present();
+
+      this.navCtrl.setRoot(LoginPage);
+    });
+
   }
 }

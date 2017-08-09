@@ -1,6 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title id="home-title">Your tasks, {{owner.getName()}}!</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only end (click)='logoutButtonClick()'>
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 <ion-content padding class="bricks">
