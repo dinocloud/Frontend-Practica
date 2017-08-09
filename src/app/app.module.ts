@@ -4,6 +4,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 //@Pages
@@ -15,6 +16,7 @@ import { TaskViewPage } from "../pages/task-view/task-view";
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { UserTasksProvider } from '../providers/user-tasks/user-tasks';
 import { HttpModule } from "@angular/http";
+import { CredentialStorageProvider } from '../providers/credential-storage/credential-storage';
 
 
 @NgModule({
@@ -28,7 +30,16 @@ import { HttpModule } from "@angular/http";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    //Device:
+    // IonicStorageModule.forRoot({
+    //   name: '_tododb'
+    // })
+    //Browser:
+    IonicStorageModule.forRoot({
+      name: '_tododb',
+      driverOrder: ['websql', 'sqlite', 'indexeddb']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +54,8 @@ import { HttpModule } from "@angular/http";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    UserTasksProvider
+    UserTasksProvider,
+    CredentialStorageProvider
   ]
 })
 export class AppModule {}
