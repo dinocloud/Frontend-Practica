@@ -1,6 +1,8 @@
 #!/bin/bash
 path=$1
 file=$2
+AWS_ACCESS_KEY_ID=$3
+AWS_SECRET_KEY=$4
 aws_path='apks'
 bucket='practica-apks'
 date=`date -R`
