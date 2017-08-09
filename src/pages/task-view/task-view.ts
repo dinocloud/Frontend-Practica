@@ -49,18 +49,22 @@ export class TaskViewPage implements OnInit{
         {
           text: 'Delete',
           handler: () => {
-            this.usrTaskProv.deleteTask(this.task);
-            let toast = this.toastCtrl.create({
-              message: `${this.task.name} deleted!`,
-              duration: 1500,
-              position: 'bottom'
-            });
+            this.usrTaskProv.deleteTask(this.task).subscribe(res => {
+              let toast = this.toastCtrl.create({
+                message: `${this.task.name} deleted!`,
+                duration: 1500,
+                position: 'bottom'
+              });
 
-            toast.onDidDismiss(() => {
-              console.log('Dismissed toast');
-            });
+              toast.onDidDismiss(() => {
+                console.log('Dismissed toast');
+              });
 
-            toast.present();
+              toast.present();
+
+            },
+              err => console.log(err));
+
             this.navCtrl.pop();
           }
         }

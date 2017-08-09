@@ -104,8 +104,9 @@ export class UserTasksProvider{
   }
 
   deleteTask(task : Task) {
-    let i = this.userTasks.findIndex(x => x.id == task.id);
-    this.userTasks.splice(i, 1);
+    return this.http
+      .delete(this.baseURL+'tasks/'+task.id, { headers : this._authHeader})
+      .map((res : Response)=>res.json());
   }
 
 
