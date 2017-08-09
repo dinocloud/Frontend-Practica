@@ -39,7 +39,7 @@
       </ion-item>
     </ion-item>
   </ion-card>
-  <ion-fab right bottom >
+  <ion-fab right bottom *ngIf="task.userOwnsIt(this.currentUser)">
     <button ion-fab color="light">
       <ion-icon name="arrow-dropleft"></ion-icon>
     </button>

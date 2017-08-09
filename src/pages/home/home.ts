@@ -52,7 +52,13 @@ export class HomePage implements OnInit{
   }
 
   openTask(task: Task, colorIndex: number) {
-    this.navCtrl.push(TaskViewPage, {'task': task, 'color': this.getCardColor(colorIndex), 'stati': this.stati});
+    this.navCtrl.push(TaskViewPage,
+      {
+        'task': task,
+        'color': this.getCardColor(colorIndex),
+        'stati': this.stati,
+        'currentUser': this.owner
+      });
   }
 
   getCardColor(i: number): string {
@@ -74,7 +80,7 @@ export class HomePage implements OnInit{
     let loading;
     if(!refresher){
       loading = this.loadingCtrl.create({
-        content: 'Refreshing your tasks',
+        content: 'Getting your tasks',
         spinner: 'circles'
       });
       loading.present();
