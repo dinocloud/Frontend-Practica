@@ -15,7 +15,7 @@ node {
       sh "npm install"  /* Really important (it installs all your project dependencies) */
       sh "ionic cordova platform rm android || true " /* Remove the old platform */
       sh "ionic cordova platform add android " /* We say which plattform we built in the apk */
-      sh "ionic cordova build android --release " /* APK release creation */
+      sh "ionic cordova build android --prod --release " /* APK release creation */
       sh "mv platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/${apkTag}.apk"
     }
 
