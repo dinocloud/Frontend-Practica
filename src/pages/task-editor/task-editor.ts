@@ -67,7 +67,10 @@ export class TaskEditorPage implements OnInit{
       this.task.description = this.newTask.description;
       this.task.users = this.newTask.users;
       this.task.status = this.newTask.status;
-      this.userTaskProv.putTask(this.task);
+      this.userTaskProv.putTask(this.task).subscribe((res) => {
+          console.log(res);
+        },
+        err => console.log(err));
     }
     else {
       this.newTask.setCreatedAt();

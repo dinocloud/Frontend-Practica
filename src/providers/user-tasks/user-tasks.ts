@@ -85,7 +85,22 @@ export class UserTasksProvider{
   }
 
   putTask(task : Task) {
-    console.log('Put ', task.toString(), ' to the server');
+    let usersId = [];
+    for(let u of task.users){
+      if(!task.userOwnsIt(u)) {
+        usersId.push(u.getId());
+      }
+
+    }
+    return this.http.put(this.baseURL+'tasks/'+task.id,
+      {
+        "task_name": task.name,
+        "task_description": task.description,
+        "users" : usersId,
+        "id_task_status" : task.status.id
+      },
+      { headers: this._authHeader})
+      .map((res : Response)=>res.json());
   }
 
   deleteTask(task : Task) {
