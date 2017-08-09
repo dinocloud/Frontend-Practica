@@ -35,10 +35,10 @@ node {
       }
     }
 
-    /*stage ('Clean')
+    stage ('Clean')
     {
       deleteDir()
-    }*/
+    }
 
     }
 
