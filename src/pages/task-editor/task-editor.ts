@@ -39,7 +39,7 @@ export class TaskEditorPage implements OnInit{
   }
 
   ngOnInit(){
-    this.tomorrow = moment().add(1, 'day').toISOString();
+    this.tomorrow = moment().add(1, 'day').format('YYYY-MM-DD');
     this.stati = this.statProv.retrieveTaskStati();
     this.users = this.usersProv.users;
     this.task = this.navParams.get('task');
@@ -59,6 +59,9 @@ export class TaskEditorPage implements OnInit{
         this.myDate = this.task.dueDay;
         this.myHour = this.task.dueHour;
         this.hasDueDate = true;
+      } else {
+        this.myDate = this.tomorrow;
+        this.myHour = '09:00';
       }
     }
     else {
@@ -69,6 +72,8 @@ export class TaskEditorPage implements OnInit{
                           console.error('A user should be passed for the new task');
       this.pageTitle = 'New task';
       this.sendButtonText = 'Create the task!';
+      this.myDate = this.tomorrow;
+      this.myHour = '09:00';
     }
 
   }

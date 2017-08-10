@@ -1,7 +1,6 @@
 //@Framework
 import { Component, OnInit } from '@angular/core';
 import {AlertController, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
-
 //@Providers
 import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 import { CredentialStorageProvider } from "../../providers/credential-storage/credential-storage";
@@ -56,15 +55,23 @@ export class HomePage implements OnInit{
     this.navCtrl.push(TaskViewPage,
       {
         'task': task,
-        'color': this.getCardColor(colorIndex),
+        'color': this.getCardColor(task),
         'stati': this.stati,
         'currentUser': this.owner
       });
   }
 
-  getCardColor(i: number): string {
-    let currentIndex = Math.floor(i % this.colors.length);
-    let currentColor = this.colors[currentIndex];
+  getCardColor(task : Task): string {
+    let currentColor : string;
+    if(task.taskIsDueIn(1)){
+      currentColor = 'red';
+    }
+    else if(task.taskIsDueIn(3)) {
+      currentColor = 'yellow';
+    }
+    else {
+      currentColor = 'green';
+    }
     return currentColor;
   }
 
