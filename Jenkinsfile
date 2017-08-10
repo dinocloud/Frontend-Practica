@@ -12,10 +12,8 @@ node {
     stage('Build APK')
     /*In this stage, we build the apk using ionic cordova framework */
     {
-      sh "npm uninstall --no-save"
       sh "npm install"  /* Really important (it installs all your project dependencies) */
-      sh "(yes || ionic cordova platform rm android ) || true " /* Remove the old platform */
-      sh "yes || ionic cordova platform add android " /* We say which plattform we built in the apk */
+      sh "yes | ionic cordova platform add android " /* We say which plattform we built in the apk */
       sh "ionic cordova build android --prod --release " /* APK release creation */
       sh "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /home/ubuntu/certs/dinocloud.keystore -storepass dinocloud123\$ platforms/android/build/outputs/apk/android-release-unsigned.apk dinocloud "
       sh "zipalign -f -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/android-DinoToDO-Dinocloud.apk"
