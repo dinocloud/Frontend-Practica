@@ -152,7 +152,7 @@ export class Task{
 
   taskIsDueIn(days : number){
     if(this._dueDate) {
-      return moment().add(days, 'days').isSameOrAfter(this._dueDate);
+      return moment().add(days, 'days').isSameOrAfter(this._dueDate, 'days');
     }
     return false;
   }
