@@ -17,7 +17,7 @@ node {
       sh "ionic cordova platform rm android || true " /* Remove the old platform */
       sh "ionic cordova platform add android " /* We say which plattform we built in the apk */
       sh "ionic cordova build android --prod --release " /* APK release creation */
-      sh "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /home/ubuntu/certs/dinocloud.keystore -storepass dinocloud123$ platforms/android/build/outputs/apk/android-release-unsigned.apk dinocloud "
+      sh "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /home/ubuntu/certs/dinocloud.keystore -storepass dinocloud123\$ platforms/android/build/outputs/apk/android-release-unsigned.apk dinocloud "
       sh "zipalign -f -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/android-DinoToDO-Dinocloud.apk"
       sh "mv platforms/android/build/outputs/apk/android-DinoToDO-Dinocloud.apk platforms/android/build/outputs/apk/${apkTag}.apk"
     }
