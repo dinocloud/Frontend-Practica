@@ -1,30 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Storage } from "@ionic/storage";
 //@Models
-import { Credentials } from "../../models/credentials";
+import { User } from "../../models/user";
 
-
-/*
-  Generated class for the CredentialStorageProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class CredentialStorageProvider {
-
+  
   constructor(public storage : Storage) {
   }
 
   getStoredCredentials() : Promise<any> {
-    return this.storage.get('credentials');
+    return this.storage.get('userCredential');
   }
 
-  saveCredentials(c : Credentials) {
-    this.storage.set('credentials', c).then();
+  saveCredentials(u : User) {
+    this.storage.set('userCredential', u).then();
   }
 
   removeCredentials() : Promise<any> {
-    return this.storage.remove('credentials');
+    return this.storage.remove('userCredential');
   }
 }

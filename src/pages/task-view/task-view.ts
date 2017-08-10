@@ -3,6 +3,7 @@ import {AlertController, NavController, NavParams, ToastController} from 'ionic-
 
 //@Models
 import { Task } from "../../models/task"
+import { User } from "../../models/user";
 //@Pages
 import { TaskEditorPage } from "../task-editor/task-editor";
 //@Providers
@@ -15,6 +16,7 @@ import { UserTasksProvider } from "../../providers/user-tasks/user-tasks";
 export class TaskViewPage implements OnInit{
   task: Task;
   color: String;
+  currentUser : User;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public usrTaskProv : UserTasksProvider,
@@ -26,6 +28,7 @@ export class TaskViewPage implements OnInit{
 
     this.task = this.navParams.get('task');
     this.color = this.navParams.get('color');
+    this.currentUser = this.navParams.get('currentUser');
 
   }
 
@@ -49,18 +52,22 @@ export class TaskViewPage implements OnInit{
         {
           text: 'Delete',
           handler: () => {
-            this.usrTaskProv.delete(this.task);
-            let toast = this.toastCtrl.create({
-              message: `${this.task.name} deleted!`,
-              duration: 1500,
-              position: 'bottom'
-            });
+            this.usrTaskProv.deleteTask(this.task).subscribe(res => {
+              let toast = this.toastCtrl.create({
+                message: `${this.task.name} deleted!`,
+                duration: 1500,
+                position: 'bottom'
+              });
 
-            toast.onDidDismiss(() => {
-              console.log('Dismissed toast');
-            });
+              toast.onDidDismiss(() => {
+                console.log('Dismissed toast');
+              });
 
-            toast.present();
+              toast.present();
+
+            },
+              err => console.log(err));
+
             this.navCtrl.pop();
           }
         }

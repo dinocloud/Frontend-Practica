@@ -26,7 +26,10 @@
       </h2>
     </ion-item>
     <ion-item text-wrap no-lines>
-      Created {{task.date}}.
+      Created {{task.creationDate}}.
+    </ion-item>
+    <ion-item text-wrap no-lines *ngIf="task.dueDate">
+      Due {{task.dueDate}}.
     </ion-item>
     <ion-item no-lines>
       Status: <ion-badge class="state-badge">{{task.status.description}}</ion-badge>
@@ -39,7 +42,7 @@
       </ion-item>
     </ion-item>
   </ion-card>
-  <ion-fab right bottom >
+  <ion-fab right bottom *ngIf="task.userOwnsIt(this.currentUser)">
     <button ion-fab color="light">
       <ion-icon name="arrow-dropleft"></ion-icon>
     </button>

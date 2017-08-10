@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding class="bricks">
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher (ionRefresh)="refreshTasksFromServer($event)">
     <ion-refresher-content
       pullingText="Pull to refresh"
       refreshingText="Refreshing...">
@@ -23,16 +23,19 @@
       <div class="task-name">{{task.name}}</div>
       <div class="task-info">
         <p>
-          Created <span class="task-date">{{task.date}}</span>
+          Created <span class="task-date">{{task.creationDate}}</span>
+          <span *ngIf="task.dueDate">
+            <br/>
+            Due <span class="task-date">{{task.dueDate}}</span>
+          </span>
         </p>
         <p class="task-description">
           {{task.description}}
         </p>
         <span class="badges">
-        <ion-badge class="state-badge">{{task.status.description}}</ion-badge>
-        <ion-badge class="task-ownership-badge" *ngIf="task.userOwnsIt(owner)">MINE</ion-badge>
-
-      </span>
+          <ion-badge class="state-badge">{{task.status.description}}</ion-badge>
+          <ion-badge class="task-ownership-badge" *ngIf="task.userOwnsIt(owner)">Mine</ion-badge>
+        </span>
       </div>
     </ion-card>
   </ion-list>

@@ -34,15 +34,14 @@
                  required>
       </ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="this.task">
       <ion-label fixed>Status</ion-label>
       <ion-select interface="popover" [(ngModel)]="newTask.status"
-                  name="statusSelect" required>
+                  name="statusSelect" required >
         <ion-option *ngFor="let s of stati; let i = index"
                     [value]="s"
                     [selected]="(i==0).toString()">
 
-          <!--selected="{{task ? task.status.id == s.id : (i==0).toString()}}"-->
           {{s.description}}
         </ion-option>
       </ion-select>
@@ -57,6 +56,35 @@
           {{u.getName()}}
         </ion-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Set a due date?</ion-label>
+      <ion-checkbox
+        [(ngModel)]="hasDueDate"
+        name="dueDateChecker"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="hasDueDate">
+      <ion-label>Day</ion-label>
+      <ion-datetime
+        displayFormat="DD/MM/YYYY"
+        [(ngModel)]="myDate"
+        name="dueDatePicker"
+        max="2030"
+        [min]="tomorrow"
+        placeholder="Tap to set a due date"
+        [required]="hasDueDate">
+      </ion-datetime>
+
+    </ion-item>
+    <ion-item *ngIf="hasDueDate">
+      <ion-label>Hour</ion-label>
+      <ion-datetime
+        displayFormat="HH:mm"
+        [(ngModel)]="myHour"
+        name="dueHourPicker"
+        placeholder="Tap to set a due hour"
+        [required]="hasDueDate">
+      </ion-datetime>
     </ion-item>
 
     <button ion-button block class="send-task-button bottom-button" type="submit"
