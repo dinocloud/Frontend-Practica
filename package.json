@@ -40,8 +40,9 @@
         "zone.js": "0.8.12"
     },
     "devDependencies": {
+        "@ionic/cli-plugin-ionic-angular":"latest",
         "@ionic/app-scripts": "2.0.2",
-        "@ionic/cli-plugin-ionic-angular": "1.4.0",
+        "@ionic/cli-plugin-cordova":"latest",
         "typescript": "2.3.4"
     },
     "description": "An Ionic project",
