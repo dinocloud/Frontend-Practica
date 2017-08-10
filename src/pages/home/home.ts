@@ -107,13 +107,16 @@ export class HomePage implements OnInit{
           users,
           owner.getId()
         );
+        if(t.task.due_date){
+          task.dueDate = t.task.due_date;
+        }
 
         this.userTasks.push(task);
       }
       if(refresher){
         refresher.complete();
         let toast = this.toastCtrl.create({
-          message  : 'Your tasks are up to date',
+          message  : 'Your tasks are up to creationDate',
           duration : 2000
         });
         toast.present();

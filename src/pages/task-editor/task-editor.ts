@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
-
+//@Utils
+import * as moment from 'moment';
 //@Models
 import { Task } from "../../models/task";
 import { Status } from "../../models/status";
@@ -24,6 +25,10 @@ export class TaskEditorPage implements OnInit{
   sendButtonText : string;
   stati : Array<Status>;
   users : Array<User>;
+  myDate: string;
+  myHour: string;
+  tomorrow: string;
+  hasDueDate : boolean;
 
   constructor(public navCtrl      : NavController,
               public navParams    : NavParams,
@@ -34,7 +39,7 @@ export class TaskEditorPage implements OnInit{
   }
 
   ngOnInit(){
-
+    this.tomorrow = moment().add(1, 'day').toISOString();
     this.stati = this.statProv.retrieveTaskStati();
     this.users = this.usersProv.users;
     this.task = this.navParams.get('task');
@@ -50,6 +55,11 @@ export class TaskEditorPage implements OnInit{
                               this.task.ownerId);
       this.pageTitle = 'Edit task';
       this.sendButtonText = 'Save changes';
+      if(this.task.dueDate){
+        this.myDate = this.task.dueDay;
+        this.myHour = this.task.dueHour;
+        this.hasDueDate = true;
+      }
     }
     else {
       this.currentUser = this.navParams.get('owner');
@@ -69,6 +79,14 @@ export class TaskEditorPage implements OnInit{
       this.task.description = this.newTask.description;
       this.task.users = this.newTask.users;
       this.task.status = this.newTask.status;
+      if(this.hasDueDate){
+        let date = this.myDate+' '+this.myHour;
+        this.task.dueDate = date;
+      }
+      else {
+        this.task.dueDate = '';
+      }
+
       this.userTaskProv.putTask(this.task).subscribe((res) => {
           this.presentToast('Task edited')
         },
@@ -79,6 +97,10 @@ export class TaskEditorPage implements OnInit{
     }
     else {
       this.newTask.setCreatedAt();
+      if(this.hasDueDate){
+        let date = this.myDate+' '+this.myHour;
+        this.newTask.dueDate = date;
+      }
       this.userTaskProv.postTask(this.newTask).subscribe((res) => {
         this.presentToast('Task successfully created!');
       },

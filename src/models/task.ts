@@ -8,14 +8,15 @@ import { Status } from "./status";
 
 export class Task{
 
-  private _id          : number;
-  private _name        : string;
-  private _description : string;
-  private _createdAt   : Moment;
+  private _id           : number;
+  private _name         : string;
+  private _description  : string;
+  private _createdAt    : Moment;
+  private _dueDate      : Moment;
   private _status       : Status;
 
-  private _users       : Array<User>;
-  private _ownerId     : number;
+  private _users        : Array<User>;
+  private _ownerId      : number;
 
   constructor(id?: number, name?: string, description?: string, createdAt?: string, state?: Status,
               users?: Array<User>, ownerId?: number) {
@@ -28,7 +29,7 @@ export class Task{
     this._ownerId = ownerId;
   }
 
- get date(): string{
+ get creationDate(): string{
     return this._createdAt.format('ddd DD MMM YYYY @ HH:mm');
   }
 
@@ -37,8 +38,8 @@ export class Task{
     return this._createdAt;
   }
 
-  get unixEpoch(): string{
-    return moment(this._createdAt).unix().toString();
+  get unixDueDate(): string{
+    return this._dueDate.unix().toString();
   }
 
 
@@ -80,7 +81,7 @@ export class Task{
   }
 
   public toString() : string{
-    return `Id: ${ this.id } Name: ${ this.name } Created @ ${ this.date }`;
+    return `Id: ${ this.id } Name: ${ this.name } Created @ ${ this.creationDate }`;
   }
 
 
@@ -116,5 +117,36 @@ export class Task{
 
     this.users ? this.users.push(owner) : this.users = [owner];
     this.ownerId = owner.getId();
+  }
+
+
+  get dueDate(): string {
+    if(this._dueDate){
+      return this._dueDate.format('ddd DD MMM YYYY @ HH:mm');
+    }
+    return ''
+  }
+
+  set dueDate(value: string) {
+    if(value) {
+      this._dueDate = moment(value);
+    }
+    else {
+      this._dueDate = undefined;
+    }
+  }
+
+  get dueDay() : string {
+    if(this._dueDate){
+      return this._dueDate.format('YYYY-MM-DD');
+    }
+    return '';
+  }
+
+  get dueHour() : string {
+    if(this._dueDate){
+      return this._dueDate.format('HH:mm');
+    }
+    return '';
   }
 }

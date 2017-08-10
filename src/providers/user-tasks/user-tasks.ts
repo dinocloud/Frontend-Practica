@@ -46,11 +46,14 @@ export class UserTasksProvider{
       }
 
     }
+    let dueDate : string;
+    task.dueDate ? dueDate = task.unixDueDate : dueDate = null;
     return this.http.post(this.baseURL+'tasks/',
       {
-      "task_name": task.name,
-      "task_description": task.description,
-      "users" : usersId
+        "task_name": task.name,
+        "task_description": task.description,
+        "users" : usersId,
+        "due_date" : dueDate
       },
       { headers: this._authHeader})
       .map((res : Response)=>res.json());
@@ -65,12 +68,15 @@ export class UserTasksProvider{
       }
 
     }
+    let dueDate : string;
+    task.dueDate ? dueDate = task.unixDueDate : dueDate = null;
     return this.http.put(this.baseURL+'tasks/'+task.id,
       {
         "task_name": task.name,
         "task_description": task.description,
         "users" : usersId,
-        "id_task_status" : task.status.id
+        "id_task_status" : task.status.id,
+        "due_date" : dueDate
       },
       { headers: this._authHeader})
       .map((res : Response)=>res.json());

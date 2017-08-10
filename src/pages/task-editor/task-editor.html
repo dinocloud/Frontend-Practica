@@ -57,6 +57,35 @@
         </ion-option>
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label>Set a due date?</ion-label>
+      <ion-checkbox
+        [(ngModel)]="hasDueDate"
+        name="dueDateChecker"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="hasDueDate">
+      <ion-label>Day</ion-label>
+      <ion-datetime
+        displayFormat="DD/MM/YYYY"
+        [(ngModel)]="myDate"
+        name="dueDatePicker"
+        max="2030"
+        [min]="tomorrow"
+        placeholder="Tap to set a due date"
+        [required]="hasDueDate">
+      </ion-datetime>
+
+    </ion-item>
+    <ion-item *ngIf="hasDueDate">
+      <ion-label>Hour</ion-label>
+      <ion-datetime
+        displayFormat="HH:mm"
+        [(ngModel)]="myHour"
+        name="dueHourPicker"
+        placeholder="Tap to set a due hour"
+        [required]="hasDueDate">
+      </ion-datetime>
+    </ion-item>
 
     <button ion-button block class="send-task-button bottom-button" type="submit"
             [disabled]="!editTaskForm.form.valid">
