@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, ToastController} from 'ionic-angular';
 
 //@Models
 import { Task } from "../../models/task";
@@ -25,11 +25,12 @@ export class TaskEditorPage implements OnInit{
   stati : Array<Status>;
   users : Array<User>;
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(public navCtrl      : NavController,
+              public navParams    : NavParams,
               public userTaskProv : UserTasksProvider,
-              public statProv : TaskStatusProvider,
-              public usersProv : UsersProvider) {
+              public statProv     : TaskStatusProvider,
+              public usersProv    : UsersProvider,
+              public toastCtrl    : ToastController) {
   }
 
   ngOnInit(){
@@ -69,16 +70,22 @@ export class TaskEditorPage implements OnInit{
       this.task.users = this.newTask.users;
       this.task.status = this.newTask.status;
       this.userTaskProv.putTask(this.task).subscribe((res) => {
-          console.log(res);
+          this.presentToast('Task edited')
         },
-        err => console.log(err));
+        err => {
+          this.presentToast('Error in the connection to the server, please try later.')
+        }
+      );
     }
     else {
       this.newTask.setCreatedAt();
       this.userTaskProv.postTask(this.newTask).subscribe((res) => {
-        console.log(res);
+        this.presentToast('Task successfully created!');
       },
-        err => console.log(err));
+        err => {
+          this.presentToast('Error in the connection to the server, please try later.')
+        }
+      );
 
     }
     this.navCtrl.pop();
@@ -86,6 +93,16 @@ export class TaskEditorPage implements OnInit{
 
   onSelectChange(selectedValue : any) {
     this.newTask.users = selectedValue;
+  }
+
+  presentToast(msg : String) {
+    let toast = this.toastCtrl.create({
+      message: msg.toString(),
+      duration: 1500,
+      position: 'bottom'
+    });
+
+    toast.present();
   }
 
 }

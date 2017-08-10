@@ -40,7 +40,7 @@ export class TaskViewPage implements OnInit{
   deleteTask() {
     let alert = this.alertCtrl.create({
       title: 'Atention!',
-      message: 'Do you really want to deleteTask this task?',
+      message: 'Do you really want to delete this task?',
       buttons: [
         {
           text: 'Cancel',
